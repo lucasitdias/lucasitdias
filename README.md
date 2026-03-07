@@ -125,29 +125,50 @@ Empresas onde atuei:
 
 <h1 align="center">🚀 Projetos em Destaque</h1>
 
-<p align="center">
+<table align="center">
+<tr>
 
+<td>
 <a href="https://github.com/lucasitdias/Sistema-de-Editoras">
-<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
+</td>
 
+<td>
 <a href="https://github.com/lucasitdias/SE-LIBERTA-BRASIL">
-<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
+</td>
 
+</tr>
+
+<tr>
+
+<td>
 <a href="https://github.com/lucasitdias/pizzaria-massa-nostra">
-<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
+</td>
 
+<td>
 <a href="https://github.com/lucasitdias/Quiz-App">
-<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
+</td>
 
+</tr>
+
+<tr>
+
+<td align="center" colspan="2">
 <a href="https://github.com/lucasitdias/Aplicacao-API-Postgres">
-<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
+</td>
 
-</p>
+</tr>
+
+</table>
 
 ---
 
