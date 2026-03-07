@@ -126,49 +126,41 @@ Empresas onde atuei:
 <h1 align="center">📂 Projetos em Destaque</h1>
 
 <table align="center">
-
 <tr>
-
 <td width="420" align="center">
 <a href="https://github.com/lucasitdias/Sistema-de-Editoras">
-<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true"/>
+<img width="400" src="assets/Sistema-de-Editoras.svg"/>
 </a>
 </td>
 
 <td width="420" align="center">
 <a href="https://github.com/lucasitdias/SE-LIBERTA-BRASIL">
-<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true"/>
+<img width="400" src="assets/SE-LIBERTA-BRASIL.svg"/>
 </a>
 </td>
-
 </tr>
 
 <tr>
-
 <td width="420" align="center">
 <a href="https://github.com/lucasitdias/pizzaria-massa-nostra">
-<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true"/>
+<img width="400" src="assets/pizzaria-massa-nostra.svg"/>
 </a>
 </td>
 
 <td width="420" align="center">
 <a href="https://github.com/lucasitdias/Quiz-App">
-<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true"/>
+<img width="400" src="assets/Quiz-App.svg"/>
 </a>
 </td>
-
 </tr>
 
 <tr>
-
 <td align="center" colspan="2">
 <a href="https://github.com/lucasitdias/Aplicacao-API-Postgres">
-<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true"/>
+<img width="400" src="assets/Aplicacao-API-Postgres.svg"/>
 </a>
 </td>
-
 </tr>
-
 </table>
 ---
 
