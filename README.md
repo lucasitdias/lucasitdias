@@ -160,9 +160,9 @@ Empresas onde atuei:
 
 <p align="center">
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=lucasitdias&show_icons=true&theme=github_dark&include_all_commits=true&count_private=true"/>
+<img height="180em" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=lucasitdias&show_icons=true&theme=github_dark&include_all_commits=true&count_private=true"/>
 
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&langs_count=8&theme=github_dark"/>
+<img height="180em" src="https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&theme=github_dark"/>
 
 </p>
 
