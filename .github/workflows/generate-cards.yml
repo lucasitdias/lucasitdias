@@ -26,6 +26,8 @@ jobs:
 
       - name: Generate SVG cards
         run: node generate-cards.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit files
         run: |
