@@ -1,8 +1,6 @@
 name: Generate Repo Cards
 
 on:
-  schedule:
-    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,23 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Install dependencies
+        run: npm install @octokit/rest
 
       - name: Generate SVG cards
         run: node generate-cards.js
 
       - name: Commit files
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config --local user.name "github-actions"
+          git config --local user.email "actions@github.com"
           git add assets/*.svg
           git commit -m "update repo cards" || echo "no changes"
-
-      - name: Push
-        run: git push
+          git push
