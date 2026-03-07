@@ -1,8 +1,17 @@
 
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
   <rect width="400" height="200" fill="#0d1117" rx="12" ry="12"/>
-  <text x="20" y="40" fill="#00ff00" font-size="18" font-family="sans-serif" font-weight="bold">Quiz-App</text>
-  <text x="20" y="80" fill="#ffffff" font-size="14" font-family="sans-serif">Quiz de perguntas e respostas</text>
-  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">⭐ 0 • TypeScript</text>
+  
+  <text x="20" y="40" fill="#00ff7f" font-size="18" font-family="sans-serif" font-weight="bold">
+    Quiz-App
+  </text>
+
+  <text x="20" y="80" fill="#c9d1d9" font-size="14" font-family="sans-serif">
+    Quiz de perguntas e respostas
+  </text>
+
+  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">
+    ⭐ 0 • TypeScript
+  </text>
+
 </svg>
-    
