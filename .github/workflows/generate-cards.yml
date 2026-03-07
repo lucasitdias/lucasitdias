@@ -3,33 +3,34 @@ name: Generate Repo Cards
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
-
-      - name: Clear npm cache
-        run: npm cache clean --force
+          node-version: 18
 
       - name: Install dependencies
         run: |
           npm init -y
           npm install @octokit/rest
 
-      - name: Generate SVG cards
+      - name: Generate cards
         run: node generate-cards.js
 
-      - name: Commit & push cards
+      - name: Commit SVGs
         run: |
-          git config --local user.name "GitHub Actions"
+          git config --local user.name "github-actions"
           git config --local user.email "actions@github.com"
           git add assets/*.svg
-          git commit -m "Update repo cards" || echo "No changes"
+          git commit -m "update repo cards" || echo "no changes"
           git push
