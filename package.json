@@ -1,6 +1,5 @@
 {
-  "name": "lucasitdias-cards",
-  "version": "1.0.0",
+  "name": "github-profile-cards",
   "type": "module",
   "dependencies": {
     "@octokit/rest": "^20.0.0"
