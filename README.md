@@ -40,7 +40,7 @@ Também possuo conhecimento em **Oracle Database, SQL e experiência com PL/SQL*
 Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informação e Desenvolvimento de Software**.
 
 ---
-<h1 align="center">💡 Competências</h1>
+<h1 align="center">🧠 Competências</h1>
 
 - Implantação e administração de **Active Directory**
 - Configuração e gestão de **VPN**
@@ -57,7 +57,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Ferramentas de Service Desk (**GLPI**, **TOPDesk**)
 
 ---
-<h1 align="center">☁️ Cloud | Segurança | Governança</h1>
+<h1 align="center">☁️ Cloud | 🛡️ Segurança | 🏛️ Governança</h1>
 
 - Experiência com **Microsoft Azure**
 - Conhecimento em **AWS**
@@ -105,7 +105,7 @@ Empresas onde atuei:
 - Desenvolvimento de Software
 
 ---
-<h1 align="center">🚀 Tecnologias e Ferramentas</h1>
+<h1 align="center">💻 Tecnologias | 🛠️ Ferramentas</h1>
 
 <p align="center">
 
@@ -123,20 +123,21 @@ Empresas onde atuei:
 
 ---
 
-<h1 align="center">🚀 Projetos em Destaque</h1>
+<h1 align="center">📂 Projetos em Destaque</h1>
 
 <table align="center">
+
 <tr>
 
-<td>
+<td width="420" align="center">
 <a href="https://github.com/lucasitdias/Sistema-de-Editoras">
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true"/>
 </a>
 </td>
 
-<td>
+<td width="420" align="center">
 <a href="https://github.com/lucasitdias/SE-LIBERTA-BRASIL">
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true"/>
 </a>
 </td>
 
@@ -144,15 +145,15 @@ Empresas onde atuei:
 
 <tr>
 
-<td>
+<td width="420" align="center">
 <a href="https://github.com/lucasitdias/pizzaria-massa-nostra">
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true"/>
 </a>
 </td>
 
-<td>
+<td width="420" align="center">
 <a href="https://github.com/lucasitdias/Quiz-App">
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true"/>
 </a>
 </td>
 
@@ -162,14 +163,13 @@ Empresas onde atuei:
 
 <td align="center" colspan="2">
 <a href="https://github.com/lucasitdias/Aplicacao-API-Postgres">
-<img src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+<img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true"/>
 </a>
 </td>
 
 </tr>
 
 </table>
-
 ---
 
 <h1 align="center">📈 Atividade no GitHub</h1>
