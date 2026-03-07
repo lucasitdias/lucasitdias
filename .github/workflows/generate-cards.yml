@@ -7,31 +7,25 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Pega o código do repositório
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Configura Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
-      # 3️⃣ Limpa cache do npm
       - name: Clear npm cache
         run: npm cache clean --force
 
-      # 4️⃣ Instala apenas @octokit/rest
       - name: Install dependencies
         run: |
           npm init -y
           npm install @octokit/rest
 
-      # 5️⃣ Roda o script
       - name: Generate SVG cards
         run: node generate-cards.js
 
-      # 6️⃣ Comita e envia os SVGs gerados para a pasta assets
       - name: Commit & push cards
         run: |
           git config --local user.name "GitHub Actions"
