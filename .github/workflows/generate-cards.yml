@@ -3,7 +3,7 @@ name: Generate Repo Cards
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"   # roda todo dia às 03h UTC (~00h no Brasil)
+    - cron: "0 3 * * *"
 
 permissions:
   contents: write
@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -29,17 +30,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit files
+      - name: Commit changes
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "actions@github.com"
-          git add assets/*.svg
+          git add assets/*.svg README.md
           git commit -m "update repo cards" || echo "no changes"
 
       - name: Push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-          force: true
-
+        run: git push
