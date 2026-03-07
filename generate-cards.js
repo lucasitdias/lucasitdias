@@ -1,43 +1,37 @@
 const fs = require("fs");
+const { Octokit } = require("@octokit/rest");
 
+const octokit = new Octokit();
+const username = "lucasitdias";
 const repos = [
-"Sistema-de-Editoras",
-"SE-LIBERTA-BRASIL",
-"pizzaria-massa-nostra",
-"Quiz-App",
-"Aplicacao-API-Postgres"
+  "Sistema-de-Editoras",
+  "SE-LIBERTA-BRASIL",
+  "pizzaria-massa-nostra",
+  "Quiz-App",
+  "Aplicacao-API-Postgres"
 ];
 
-if (!fs.existsSync("assets")) {
-fs.mkdirSync("assets");
+async function generate() {
+  for (const repo of repos) {
+    const { data } = await octokit.repos.get({ owner: username, repo });
+
+    const name = data.name;
+    const desc = data.description || "No description";
+    const stars = data.stargazers_count;
+    const language = data.language || "";
+
+    const svg = `
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+  <rect width="400" height="200" fill="#0d1117" rx="12" ry="12"/>
+  <text x="20" y="40" fill="white" font-size="20" font-family="sans-serif">${name}</text>
+  <text x="20" y="80" fill="#c0c0c0" font-size="14" font-family="sans-serif">${desc}</text>
+  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">⭐ ${stars} • ${language}</text>
+</svg>
+    `;
+
+    fs.writeFileSync(`assets/${repo}.svg`, svg);
+    console.log(`Generated ${repo}.svg`);
+  }
 }
 
-repos.forEach(repo => {
-
-const svg = `
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120">
-
-<style>
-.title { fill:#39ff14; font-size:18px; font-family:Segoe UI, Arial; font-weight:bold }
-.desc { fill:#8b949e; font-size:13px; font-family:Segoe UI, Arial }
-.border { fill:#0d1117; stroke:#30363d; stroke-width:1 }
-</style>
-
-<rect class="border" width="100%" height="100%" rx="10"/>
-
-<text x="20" y="45" class="title">
-${repo}
-</text>
-
-<text x="20" y="75" class="desc">
-github.com/lucasitdias/${repo}
-</text>
-
-</svg>
-`;
-
-fs.writeFileSync(`assets/${repo}.svg`, svg);
-
-});
-
-console.log("cards gerados");
+generate();
