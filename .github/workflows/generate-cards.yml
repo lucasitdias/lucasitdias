@@ -3,19 +3,21 @@ name: Generate Repo Cards
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 3 * * *"   # roda todo dia às 03h UTC
 
 permissions:
   contents: write
+  workflows: write
 
 jobs:
   generate:
     runs-on: ubuntu-latest
 
     steps:
-
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -32,10 +34,12 @@ jobs:
 
       - name: Commit changes
         run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+
           git add assets/*.svg README.md
-          git commit -m "update repo cards" || echo "no changes"
+
+          git diff --cached --quiet || git commit -m "update repo cards"
 
       - name: Push changes
         run: git push
