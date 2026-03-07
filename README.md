@@ -13,7 +13,7 @@ IT Support | Infrastructure | Network Analyst | Active Directory | Windows Serve
   <img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/main/programador .png" width="160">
 </p>
 
-<h3 align="center">🏆 Conquistas no GitHub</h3>
+<h3 align="center"> 🏆 Conquistas no GitHub</h3>
 
 <p align="center">
 <img src="https://github-profile-trophy-eight.vercel.app/?username=lucasitdias&theme=algolia&no-frame=true&no-bg=true&row=1&column=6&margin-w=20"/>
@@ -25,7 +25,7 @@ IT Support | Infrastructure | Network Analyst | Active Directory | Windows Serve
 
 ---
 
-## 👨🏼‍💻 Sobre mim
+<h2 align="center"> 👨🏼‍💻 Sobre mim</h2>
 
 Profissional de **Tecnologia da Informação com mais de 10 anos de experiência**, atuando em **suporte técnico, infraestrutura e redes** em ambientes **corporativos e hospitalares**.
 
@@ -40,7 +40,8 @@ Também possuo conhecimento em **Oracle Database, SQL e experiência com PL/SQL*
 Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informação e Desenvolvimento de Software**.
 
 ---
-<h1 align="center">🧠 Competências</h1>
+
+<h2 align="center"> 🧠 Competências</h2>
 
 - Implantação e administração de **Active Directory**
 - Configuração e gestão de **VPN**
@@ -57,7 +58,8 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Ferramentas de Service Desk (**GLPI**, **TOPDesk**)
 
 ---
-<h1 align="center">☁️ Cloud | 🛡️ Segurança | 🏛️ Governança</h1>
+
+<h2 align="center"> ☁️ Cloud | 🛡️ Segurança | 🏛️ Governança</h2>
 
 - Experiência com **Microsoft Azure**
 - Conhecimento em **AWS**
@@ -67,7 +69,8 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Gestão de riscos e governança de TI
 
 ---
-<h1 align="center">🎯 Soft Skills</h1>
+
+<h2 align="center"> 🎯 Soft Skills</h2>
 
 - Comunicação clara
 - Trabalho em equipe
@@ -77,7 +80,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Capacidade de adaptação
 
 ---
-<h1 align="center">📚 Desenvolvimento Profissional</h1>
+<h2 align="center"> 📚 Desenvolvimento Profissional</h2>
 
 - 🎓 Estudante de **Ciência da Computação**
 - 🚀 Aprimorando conhecimentos em **desenvolvimento e automação**
@@ -85,7 +88,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - ☁️ Estudos contínuos em **Cloud Computing e Segurança da Informação**
 
 ---
-<h1 align="center">💼 Experiência Profissional</h1>
+<h2 align="center"> 💼 Experiência Profissional</h2>
 
 Experiência em ambientes corporativos e hospitalares atuando com suporte, infraestrutura e implantação de sistemas.
 
@@ -96,7 +99,7 @@ Empresas onde atuei:
 - **DHL**
 
 ---
-<h1 align="center">🧠 Áreas de Interesse</h1>
+<h2 align="center"> 🧠 Áreas de Interesse</h2>
 
 - Service Desk e Suporte
 - Segurança da Informação
@@ -105,7 +108,7 @@ Empresas onde atuei:
 - Desenvolvimento de Software
 
 ---
-<h1 align="center">💻 Tecnologias | 🛠️ Ferramentas</h1>
+<h2 align="center"> 💻 Tecnologias  |  🛠️ Ferramentas</h2>
 
 <p align="center">
 
@@ -123,7 +126,7 @@ Empresas onde atuei:
 
 ---
 
-<h1 align="center">📂 Projetos em Destaque</h1>
+<h2 align="center"> 📂 Projetos em Destaque</h2>
 
 <table align="center">
 <tr>
@@ -172,7 +175,7 @@ Empresas onde atuei:
 
 ---
 
-<h1 align="center">📈 Atividade no GitHub</h1>
+<h2 align="center"> 📈 Atividade no GitHub</h2>
 
 <p align="center">
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=lucasitdias&theme=github-dark&hide_border=true"/>
@@ -180,7 +183,7 @@ Empresas onde atuei:
 
 ---
 
-<h1 align="center">📊 Estatísticas GitHub</h1>
+<h2 align="center"> 📊 Estatísticas GitHub</h2>
 
 <table align="center">
 <tr>
@@ -203,7 +206,7 @@ src="https://streak-stats.demolab.com?user=lucasitdias&theme=highcontrast&hide_b
 
 ---
 
-<h1 align="center">🌐 Conecte-se comigo</h1>
+<h2 align="center"> 🌐 Conecte-se comigo</h2>
 
 <p align="center">
 <a href="mailto:lucas.it.dias@gmail.com">
