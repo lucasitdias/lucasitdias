@@ -11,27 +11,26 @@ async function generate() {
 
   const { data } = await octokit.repos.listForUser({
     username,
-    sort: "updated",
     per_page: 100
   });
 
-  const repos = data.filter(repo => !repo.fork && repo.description);
+  // pega apenas repos do usuário (não fork)
+  const repos = data.filter(repo => !repo.fork);
 
   let table = `<table align="center">\n<tr>\n`;
-
   let col = 0;
 
   for (const repo of repos) {
 
     const name = repo.name;
-    const desc = repo.description || "Sem descrição";
+    const desc = repo.description || "Projeto sem descrição";
     const stars = repo.stargazers_count;
-    const language = repo.language || "";
+    const language = repo.language || "N/A";
 
     const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
-  <rect width="400" height="200" fill="#0d1117" rx="12" ry="12"/>
-  
+  <rect width="400" height="200" fill="#0d1117" rx="12"/>
+
   <text x="20" y="40" fill="#00ff7f" font-size="18" font-family="sans-serif" font-weight="bold">
     ${name}
   </text>
@@ -76,7 +75,7 @@ async function generate() {
 
   fs.writeFileSync("README.md", updated);
 
-  console.log("README atualizado");
+  console.log("README atualizado com projetos");
 }
 
 generate();
