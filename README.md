@@ -1,82 +1,200 @@
-<h1 align="left" style="border-bottom: none; margin-bottom: 0;">
-  Lucas Luigi Dias Custodio
+<h1 align="center">
+  Olá 👋, eu sou Lucas Dias
 </h1>
 
-<p align="left">
-  <img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/main/programador .png" width="160" style="margin-top: 20px;">
-</p>
-
-<!-- Área de Atuação -->
-<h3 align="center">
-  👨🏼‍💻 IT Support and Network Analyst | Full Stack Developer Enthusiast
-</h3>
-
----
-Me chamo **Lucas**, tenho 36 anos e sou natural de São Paulo.
-
-Atuo na área de tecnologia há mais de **10 anos**, com experiência sólida em **suporte técnico, infraestrutura e redes** em ambientes corporativos e hospitalares.  
-
-💡 **Principais competências:**
-- Implantação de sistemas corporativos e administração de **Active Directory**, **VPN** e servidores **Windows/Linux**  
-- Redução de falhas e aumento da eficiência operacional  
-- Suporte de **primeiro e segundo nível**, manutenção preventiva e treinamento de usuários  
-- Conhecimento em **Oracle** e **PL/SQL**, além de vivência com ferramentas de gestão de chamados (**GLPI**, **TOPDesk**)  
-
-☁️ **Cloud & Segurança:**  
-- Experiência em **Azure** e conhecimento em **AWS**  
-- Conhecimento em **LGPD** e **SC-900**  
-- Base sólida em boas práticas de TI (**ITIL**)  
-
-🎯 **Soft Skills:**  
-- Comunicação clara  
-- Trabalho em equipe  
-- Resolução de problemas complexos  
-
----
-
-### 📚 Em constante evolução
-- Estudante de **Ciência da Computação**  
-- Buscando colaborar em projetos de **desenvolvimento, automação e infraestrutura**  
-- Interesse em **boas práticas de arquitetura, testes e desenvolvimento**  
-
----
-
-### 🚀 Tecnologias
 <p align="center">
-  <img alt="Lucas-Js" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg">
-  <img alt="Lucas-Ts" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg">
-  <img alt="Lucas-React" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-  <img alt="Lucas-HTML" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg">
-  <img alt="Lucas-CSS" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg">
-  <img alt="Lucas-Python" height="40" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
+IT Support & Infrastructure Analyst | Full Stack Developer Enthusiast
+  <!--
+IT Support | Infrastructure | Network Analyst | Active Directory | Windows Server | Linux | Cloud | Azure | AWS | DevOps | Full Stack Developer
+-->
 </p>
 
----
-
-### 📊 Estatísticas
 <p align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=lucasitdias&show_icons=true&theme=highcontrast" />
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&theme=highcontrast" />
+  <img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/main/programador .png" width="160">
+</p>
+
+<h3 align="center">🏆 Conquistas no GitHub</h3>
+
+<p align="center">
+<img src="https://github-profile-trophy.vercel.app/?username=lucasitdias&theme=algolia&no-frame=true&row=1&column=7"/>
+</p>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=lucasitdias&color=blue&style=flat-square&label=Profile+Views"/>
 </p>
 
 ---
 
-### 🌐 Contato
-<div align="center"> 
-  <a href="mailto:lucas.it.dias@gmail.com" target="_blank">
-    <img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
-  </a>
-  <a href="https://www.linkedin.com/in/lucasitdias" target="_blank">
-    <img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white">
-  </a>
-  <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/Microsoft_Teams-6264A7?style=for-the-badge&logo=microsoft-teams&logoColor=white">
-  </a>
-  <a href="https://github.com/lucasitdias/" target="_blank">
-    <img src="https://img.shields.io/badge/Google%20Meet-00897B?style=for-the-badge&logo=google-meet&logoColor=white">
-  </a> 
-</div>
+## 👨🏼‍💻 Sobre mim
+
+Profissional de **Tecnologia da Informação com mais de 10 anos de experiência**, atuando em **suporte técnico, infraestrutura e redes** em ambientes **corporativos e hospitalares**.
+
+Experiência em **implantação de sistemas corporativos, administração de Active Directory, VPN e sistemas operacionais Windows, Linux e macOS**, sempre focado em **disponibilidade, segurança e eficiência operacional**.
+
+Possuo forte atuação em **suporte de primeiro e segundo nível**, manutenção preventiva de equipamentos, inventário de ativos e treinamento de usuários, garantindo estabilidade e continuidade dos serviços.
+
+Tenho experiência na melhoria de processos de suporte, redução de falhas operacionais e aumento da disponibilidade de sistemas em ambientes corporativos.
+
+Também possuo conhecimento em **Oracle Database, SQL e experiência com PL/SQL**, além de vivência com ferramentas de gestão de chamados como **GLPI e TOPDesk**.
+
+Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informação e Desenvolvimento de Software**.
+
 
 ---
+
+## 💡 Competências
+
+- Implantação e administração de **Active Directory**
+- Configuração e gestão de **VPN**
+- Administração de servidores **Windows Server e Linux**
+- Suporte técnico **N1 e N2**
+- Manutenção preventiva de equipamentos
+- Inventário e padronização de ativos de TI
+- Administração de **Office 365**
+- Monitoramento e atualização de sistemas (**WSUS**)
+- Configuração de **redes estruturadas e access points**
+- Conhecimento em **Oracle Database, SQL e PL/SQL**
+- Virtualização com **VMware**
+- Containers com **Docker**
+- Ferramentas de Service Desk (**GLPI**, **TOPDesk**)
+
+---
+
+## ☁️ Cloud, Segurança e Governança
+
+- Experiência com **Microsoft Azure**
+- Conhecimento em **AWS**
+- Conhecimento em **LGPD**
+- Conhecimento em **Microsoft Security, Compliance & Identity (SC-900)**
+- Boas práticas de **ITIL**
+- Gestão de riscos e governança de TI
+
+---
+
+## 🎯 Soft Skills
+
+- Comunicação clara
+- Trabalho em equipe
+- Resolução de problemas complexos
+- Pensamento analítico
+- Proatividade
+- Capacidade de adaptação
+
+---
+
+## 📚 Desenvolvimento profissional contínuo
+
+- 🎓 Estudante de **Ciência da Computação**
+- 🚀 Aprimorando conhecimentos em **desenvolvimento e automação**
+- 🔎 Interesse em **arquitetura de software, testes e boas práticas**
+- ☁️ Estudos contínuos em **Cloud Computing e Segurança da Informação**
+
+---
+
+## 💼 Experiência Profissional
+
+Experiência em ambientes corporativos e hospitalares atuando com suporte, infraestrutura e implantação de sistemas.
+
+Empresas onde atuei:
+
+- **Unimed**
+- **AGCO**
+- **DHL**
+
+---
+
+## 🧠 Áreas de Interesse
+
+- Service Desk e Suporte
+- Segurança da Informação
+- Infraestrutura e Redes
+- Automação de processos
+- Desenvolvimento de Software
+
+---
+
+# 🚀 Tecnologias e Ferramentas
+
+<p align="center">
+
+<img src="https://skillicons.dev/icons?i=js,ts,react,html,css,python,linux,windows,git,docker,azure,aws" />
+
+</p>
+
+<p align="center">
+
+<img src="https://img.shields.io/badge/Oracle-Database-red?style=for-the-badge&logo=oracle&logoColor=white"/>
+<img src="https://img.shields.io/badge/VMware-Virtualization-607078?style=for-the-badge&logo=vmware&logoColor=white"/>
+<img src="https://img.shields.io/badge/Active%20Directory-Microsoft-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
+
+</p>
+
+---
+
+# 🚀 Projetos em Destaque
+
+<p align="center">
+
+<a href="https://github.com/lucasitdias">
+<img height="140em" src="https://github-readme-stats.vercel.app/api/pin/?username=lucasitdias&repo=NOME_DO_REPOSITORIO&theme=github_dark&hide_border=true"/>
+
+</a>
+
+<a href="https://github.com/lucasitdias">
+<img height="140em" src="https://github-readme-stats.vercel.app/api/pin/?username=lucasitdias&repo=NOME_DO_REPOSITORIO2&theme=github_dark&hide_border=true"/>
+
+</a>
+
+</p>
+
+---
+
+# 📈 Atividade no GitHub
+
+<p align="center">
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=lucasitdias&theme=github-dark&hide_border=true"/>
+</p>
+
+---
+
+# 📊 Estatísticas GitHub
+
+<p align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=lucasitdias&show_icons=true&theme=github_dark&hide_border=true&cache_seconds=1800"/>
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&theme=github_dark&hide_border=true"/>
+
+</p>
+
+---
+
+# 🌐 Conecte-se comigo
+
+<p align="center">
+
+<a href="mailto:lucas.it.dias@gmail.com">
+<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+
+<a href="https://www.linkedin.com/in/lucasitdias">
+<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
+</a>
+
+<a href="https://github.com/lucasitdias">
+<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+</a>
+
+<a href="https://linktr.ee/lucasitdev">
+<img src="https://img.shields.io/badge/Portfólio-Linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=black">
+</a>
+
+</p>
+
+---
+
+<p align="center">
 
 ![Snake animation](https://github.com/lucasitdias/lucasitdias/blob/output/github-contribution-grid-snake.svg)
+
+</p>
