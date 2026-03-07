@@ -20,7 +20,15 @@ IT Support | Infrastructure | Network Analyst | Active Directory | Windows Serve
 </p>
 
 <p align="center">
-  <img src="https://komarev.com/ghpvc/?username=lucasitdias&color=blue&style=flat-square&label=Profile+Views"/>
+<img src="https://komarev.com/ghpvc/?username=lucasitdias&color=blue&style=for-the-badge&label=VISUALIZAÇÕES"/>&nbsp;
+<a href="https://github.com/lucasitdias?tab=repositories&sort=stargazers">
+<img alt="Total de estrelas" title="Total de estrelas GitHub"
+src="https://custom-icon-badges.demolab.com/github/stars/lucasitdias?color=55960c&style=for-the-badge&labelColor=488207&logo=star&label=ESTRELAS"/>
+</a>&nbsp;
+<a href="https://github.com/lucasitdias?tab=followers">
+<img alt="Seguidores" title="Me siga no GitHub"
+src="https://custom-icon-badges.demolab.com/github/followers/lucasitdias?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=SEGUIDORES&logoColor=white"/>
+</a>
 </p>
 
 ---
@@ -108,21 +116,104 @@ Empresas onde atuei:
 - Desenvolvimento de Software
 
 ---
-<h2 align="center"> 💻 Tecnologias  |  🛠️ Ferramentas</h2>
+
+<h2 align="center">💻 Tecnologias</h2>
+
+<h3 align="center">🔤 Linguagens</h3>
 
 <p align="center">
 
-<img src="https://skillicons.dev/icons?i=js,ts,react,html,css,python,linux,windows,git,docker,azure,aws" />
+<img title="HTML" src="https://skillicons.dev/icons?i=html"/>
+<img title="CSS" src="https://skillicons.dev/icons?i=css"/>
+<img title="JavaScript" src="https://skillicons.dev/icons?i=js"/>
+<img title="TypeScript" src="https://skillicons.dev/icons?i=ts"/>
+<img title="Python" src="https://skillicons.dev/icons?i=python"/>
+<img title="Java" src="https://skillicons.dev/icons?i=java"/>
+
+</p>
+
+
+<h3 align="center">⚙️ Frameworks • Plataformas</h3>
+
+<p align="center">
+
+<img title="React" src="https://skillicons.dev/icons?i=react"/>
+<img title="Next.js" src="https://skillicons.dev/icons?i=nextjs"/>
+<img title="Node.js" src="https://skillicons.dev/icons?i=nodejs"/>
+
+<img title="Android" height="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg"/>
+
+<img title="Tailwind CSS" src="https://skillicons.dev/icons?i=tailwind"/>
+<img title="Bootstrap" src="https://skillicons.dev/icons?i=bootstrap"/>
+<img title="Sass" src="https://skillicons.dev/icons?i=sass"/>
+
+</p>
+
+
+<h3 align="center">🗄 Banco de Dados</h3>
+
+<p align="center">
+
+<img title="PostgreSQL" src="https://skillicons.dev/icons?i=postgres"/>
+<img title="MongoDB" src="https://skillicons.dev/icons?i=mongodb"/>
+<img title="Supabase" src="https://skillicons.dev/icons?i=supabase"/>
 
 </p>
 
 <p align="center">
 
-<img src="https://img.shields.io/badge/Oracle-Database-red?style=for-the-badge&logo=oracle&logoColor=white"/>
-&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/VMware-Virtualization-607078?style=for-the-badge&logo=vmware&logoColor=white"/>
-&nbsp;&nbsp;
-<img src="https://img.shields.io/badge/Active%20Directory-Microsoft-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
+<img title="PL/SQL" src="https://img.shields.io/badge/PLSQL-Database-F80000?style=for-the-badge&logo=oracle&logoColor=white"/>
+&nbsp;
+<img title="Oracle Database" src="https://img.shields.io/badge/Oracle-Database-red?style=for-the-badge&logo=oracle&logoColor=white"/>
+
+</p>
+
+
+<h3 align="center">🛠 DevOps • Infraestrutura • Sistemas</h3>
+
+<p align="center">
+
+<img title="Git" src="https://skillicons.dev/icons?i=git"/>
+<img title="Docker" src="https://skillicons.dev/icons?i=docker"/>
+
+<img title="Ubuntu" src="https://skillicons.dev/icons?i=ubuntu"/>
+<img title="Linux Mint" height="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linuxmint/linuxmint-original.svg"/>
+<img title="Fedora" height="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fedora/fedora-original.svg"/>
+
+<img title="Windows" src="https://skillicons.dev/icons?i=windows"/>
+<img title="macOS" src="https://skillicons.dev/icons?i=apple"/>
+
+<img title="AWS" src="https://skillicons.dev/icons?i=aws"/>
+<img title="Azure" src="https://skillicons.dev/icons?i=azure"/>
+
+<img title="VS Code" src="https://skillicons.dev/icons?i=vscode"/>
+
+<img title="Raspberry Pi" src="https://skillicons.dev/icons?i=raspberrypi"/>
+
+</p>
+
+<p align="center">
+
+<img title="VMware" src="https://img.shields.io/badge/VMware-Virtualization-607078?style=for-the-badge&logo=vmware&logoColor=white"/>
+&nbsp;
+<img title="Active Directory" src="https://img.shields.io/badge/Active%20Directory-Microsoft-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
+&nbsp;
+<img title="Windows Server" src="https://img.shields.io/badge/Windows%20Server-Administration-0078D6?style=for-the-badge&logo=windows&logoColor=white"/>
+&nbsp;
+<img title="pfSense" src="https://img.shields.io/badge/pfSense-Firewall-212121?style=for-the-badge&logo=pfsense&logoColor=white"/>
+&nbsp;
+<img title="SonicWall VPN" src="https://img.shields.io/badge/SonicWall-VPN-FF6600?style=for-the-badge"/>
+&nbsp;
+<img title="SCCM" src="https://img.shields.io/badge/SCCM-Management-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
+&nbsp;
+<img title="WSUS" src="https://img.shields.io/badge/WSUS-Updates-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
+&nbsp;
+<img title="GLPI" src="https://img.shields.io/badge/GLPI-Service%20Desk-2C3E50?style=for-the-badge"/>
+&nbsp;
+<img title="TOPDesk" src="https://img.shields.io/badge/TOPDesk-ITSM-FF6F00?style=for-the-badge"/>
+&nbsp;
+<img title="Microsoft 365" src="https://img.shields.io/badge/Microsoft%20365-Cloud-D83B01?style=for-the-badge&logo=microsoft&logoColor=white"/>
+&nbsp;
 
 </p>
 
