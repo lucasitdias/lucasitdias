@@ -1,20 +1,8 @@
 
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120">
-
-<style>
-.title { fill:#39ff14; font-size:18px; font-family:Segoe UI, Arial; font-weight:bold }
-.desc { fill:#8b949e; font-size:13px; font-family:Segoe UI, Arial }
-.border { fill:#0d1117; stroke:#30363d; stroke-width:1 }
-</style>
-
-<rect class="border" width="100%" height="100%" rx="10"/>
-
-<text x="20" y="45" class="title">
-pizzaria-massa-nostra
-</text>
-
-<text x="20" y="75" class="desc">
-github.com/lucasitdias/pizzaria-massa-nostra
-</text>
-
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
+  <rect width="400" height="200" fill="#0d1117" rx="12" ry="12"/>
+  <text x="20" y="40" fill="white" font-size="20" font-family="sans-serif">pizzaria-massa-nostra</text>
+  <text x="20" y="80" fill="#c0c0c0" font-size="14" font-family="sans-serif">Sistema web de pedidos para pizzaria</text>
+  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">⭐ 0 • TypeScript</text>
 </svg>
+    
