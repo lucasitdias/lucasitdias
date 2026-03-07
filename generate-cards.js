@@ -1,37 +1,85 @@
 import fs from "fs";
 import { Octokit } from "@octokit/rest";
 
-const octokit = new Octokit();
 const username = "lucasitdias";
-const repos = [
-  "Sistema-de-Editoras",
-  "SE-LIBERTA-BRASIL",
-  "pizzaria-massa-nostra",
-  "Quiz-App",
-  "Aplicacao-API-Postgres"
-];
+
+const octokit = new Octokit({
+  auth: process.env.GITHUB_TOKEN
+});
 
 async function generate() {
-  for (const repo of repos) {
-    const { data } = await octokit.repos.get({ owner: username, repo });
 
-    const name = data.name;
-    const desc = data.description || "Sem descrição";
-    const stars = data.stargazers_count;
-    const language = data.language || "";
+  const { data } = await octokit.repos.listForUser({
+    username,
+    sort: "updated",
+    per_page: 100
+  });
+
+  const repos = data.filter(repo => !repo.fork && repo.description);
+
+  let table = `<table align="center">\n<tr>\n`;
+
+  let col = 0;
+
+  for (const repo of repos) {
+
+    const name = repo.name;
+    const desc = repo.description || "Sem descrição";
+    const stars = repo.stargazers_count;
+    const language = repo.language || "";
 
     const svg = `
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="200">
   <rect width="400" height="200" fill="#0d1117" rx="12" ry="12"/>
-  <text x="20" y="40" fill="#00ff00" font-size="18" font-family="sans-serif" font-weight="bold">${name}</text>
-  <text x="20" y="80" fill="#ffffff" font-size="14" font-family="sans-serif">${desc}</text>
-  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">⭐ ${stars} • ${language}</text>
-</svg>
-    `;
+  
+  <text x="20" y="40" fill="#00ff7f" font-size="18" font-family="sans-serif" font-weight="bold">
+    ${name}
+  </text>
 
-    fs.writeFileSync(`assets/${repo}.svg`, svg);
-    console.log(`Generated ${repo}.svg`);
+  <text x="20" y="80" fill="#c9d1d9" font-size="14" font-family="sans-serif">
+    ${desc}
+  </text>
+
+  <text x="20" y="160" fill="#58a6ff" font-size="12" font-family="sans-serif">
+    ⭐ ${stars} • ${language}
+  </text>
+
+</svg>
+`;
+
+    const path = `assets/${name}.svg`;
+
+    fs.writeFileSync(path, svg);
+
+    table += `
+<td width="50%" align="center">
+<a href="https://github.com/${username}/${name}">
+<img width="400" src="assets/${name}.svg"/>
+</a>
+</td>
+`;
+
+    col++;
+
+    if (col === 2) {
+      table += "\n</tr>\n<tr>\n";
+      col = 0;
+    }
+
   }
+
+  table += "\n</tr>\n</table>";
+
+  const readme = fs.readFileSync("README.md", "utf8");
+
+  const updated = readme.replace(
+    /<!--START_PROJECTS-->[\s\S]*<!--END_PROJECTS-->/,
+    `<!--START_PROJECTS-->\n${table}\n<!--END_PROJECTS-->`
+  );
+
+  fs.writeFileSync("README.md", updated);
+
+  console.log("README atualizado com projetos");
 }
 
 generate();
