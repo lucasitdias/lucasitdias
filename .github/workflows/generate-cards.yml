@@ -33,6 +33,5 @@ jobs:
           git config --local user.email "actions@github.com"
           git add assets/*.svg
           git commit -m "update repo cards" || echo "no changes"
-          git pull --rebase origin main
+          git pull --rebase origin main || true
           git push
-
