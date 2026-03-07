@@ -40,8 +40,7 @@ Também possuo conhecimento em **Oracle Database, SQL e experiência com PL/SQL*
 Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informação e Desenvolvimento de Software**.
 
 ---
-
-## 💡 Competências
+<h1 align="center">💡 Competências</h1>
 
 - Implantação e administração de **Active Directory**
 - Configuração e gestão de **VPN**
@@ -58,8 +57,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Ferramentas de Service Desk (**GLPI**, **TOPDesk**)
 
 ---
-
-## ☁️ Cloud, Segurança e Governança
+<h1 align="center">☁️ Cloud | Segurança | Governança</h1>
 
 - Experiência com **Microsoft Azure**
 - Conhecimento em **AWS**
@@ -69,8 +67,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Gestão de riscos e governança de TI
 
 ---
-
-## 🎯 Soft Skills
+<h1 align="center">🎯 Soft Skills</h1>
 
 - Comunicação clara
 - Trabalho em equipe
@@ -80,8 +77,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - Capacidade de adaptação
 
 ---
-
-## 📚 Desenvolvimento profissional contínuo
+<h1 align="center">📚 Desenvolvimento Profissional</h1>
 
 - 🎓 Estudante de **Ciência da Computação**
 - 🚀 Aprimorando conhecimentos em **desenvolvimento e automação**
@@ -89,8 +85,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - ☁️ Estudos contínuos em **Cloud Computing e Segurança da Informação**
 
 ---
-
-## 💼 Experiência Profissional
+<h1 align="center">💼 Experiência Profissional</h1>
 
 Experiência em ambientes corporativos e hospitalares atuando com suporte, infraestrutura e implantação de sistemas.
 
@@ -101,8 +96,7 @@ Empresas onde atuei:
 - **DHL**
 
 ---
-
-## 🧠 Áreas de Interesse
+<h1 align="center">🧠 Áreas de Interesse</h1>
 
 - Service Desk e Suporte
 - Segurança da Informação
@@ -111,8 +105,7 @@ Empresas onde atuei:
 - Desenvolvimento de Software
 
 ---
-
-# 🚀 Tecnologias e Ferramentas
+<h1 align="center">🚀 Tecnologias e Ferramentas</h1>
 
 <p align="center">
 
@@ -130,25 +123,35 @@ Empresas onde atuei:
 
 ---
 
-# 🚀 Projetos em Destaque
+<h1 align="center">🚀 Projetos em Destaque</h1>
 
 <p align="center">
 
-<a href="https://github.com/lucasitdias">
-<img height="140em" src="https://github-readme-stats.vercel.app/api/pin/?username=lucasitdias&repo=NOME_DO_REPOSITORIO&theme=github_dark&hide_border=true"/>
-
+<a href="https://github.com/lucasitdias/Sistema-de-Editoras">
+<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Sistema-de-Editoras&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
 
-<a href="https://github.com/lucasitdias">
-<img height="140em" src="https://github-readme-stats.vercel.app/api/pin/?username=lucasitdias&repo=NOME_DO_REPOSITORIO2&theme=github_dark&hide_border=true"/>
+<a href="https://github.com/lucasitdias/SE-LIBERTA-BRASIL">
+<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=SE-LIBERTA-BRASIL&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+</a>
 
+<a href="https://github.com/lucasitdias/pizzaria-massa-nostra">
+<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=pizzaria-massa-nostra&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+</a>
+
+<a href="https://github.com/lucasitdias/Quiz-App">
+<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Quiz-App&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
+</a>
+
+<a href="https://github.com/lucasitdias/Aplicacao-API-Postgres">
+<img width="350" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&repo=Aplicacao-API-Postgres&theme=chartreuse-dark&hide_border=true&description_lines_count=1"/>
 </a>
 
 </p>
 
 ---
 
-# 📈 Atividade no GitHub
+<h1 align="center">📈 Atividade no GitHub</h1>
 
 <p align="center">
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=lucasitdias&theme=github-dark&hide_border=true"/>
@@ -156,38 +159,35 @@ Empresas onde atuei:
 
 ---
 
-# 📊 Estatísticas GitHub
+<h1 align="center">📊 Estatísticas GitHub</h1>
 
 <p align="center">
+  <a href="https://beacons.ai/lucasitdias">
+    <img height="200em"
+      src="https://stats-github-readme.vercel.app/api?username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&count_private=true&hide_border=true&border_radius=12&locale=pt-br"/>
+  </a>
+  <a href="https://beacons.ai/lucasitdias">
+    <img height="200em"
+      src="https://stats-github-readme.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&border_radius=12&locale=pt-br"/>
+  </a>
+</p>
 
-<img height="180em" src="https://stats-github-readme.vercel.app/api?username=lucasitdias&show_icons=true&theme=github_dark&include_all_commits=true&count_private=true"/>
-
-<img height="180em" src="https://stats-github-readme.vercel.app/api/top-langs/?username=lucasitdias&layout=compact&theme=github_dark"/>
-
+<p align="center">
+  <a href="https://beacons.ai/lucasitdias">
+    <img height="200em"
+      src="https://streak-stats.demolab.com?user=lucasitdias&theme=highcontrast&hide_border=true&border_radius=12&locale=pt_BR"/>
+  </a>
 </p>
 
 ---
 
-# 🌐 Conecte-se comigo
+<h1 align="center">🌐 Conecte-se comigo</h1>
 
 <p align="center">
-
-<a href="mailto:lucas.it.dias@gmail.com">
-<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white">
-</a>
-
-<a href="https://www.linkedin.com/in/lucasitdias">
-<img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">
-</a>
-
-<a href="https://github.com/lucasitdias">
-<img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
-</a>
-
-<a href="https://linktr.ee/lucasitdev">
-<img src="https://img.shields.io/badge/Portfólio-Linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=black">
-</a>
-
+<a href="mailto:lucas.it.dias@gmail.com"><img height="45" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://www.linkedin.com/in/lucasitdias"><img height="45" src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://github.com/lucasitdias"><img height="45" src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>&nbsp;&nbsp;&nbsp;
+<a href="https://linktr.ee/lucasitdev"><img height="45" src="https://img.shields.io/badge/Linktree-39E09B?style=for-the-badge&logo=linktree&logoColor=black"></a>
 </p>
 
 ---
