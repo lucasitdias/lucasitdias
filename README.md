@@ -16,7 +16,7 @@ IT Support | Infrastructure | Network Analyst | Active Directory | Windows Serve
 <h3 align="center">🏆 Conquistas no GitHub</h3>
 
 <p align="center">
-<img src="https://github-profile-trophy.vercel.app/?username=lucasitdias&theme=algolia&no-frame=true&row=1&column=7"/>
+<img src="https://github-profile-trophy-eight.vercel.app/?username=lucasitdias&theme=algolia&no-frame=true&no-bg=true&row=1&column=6&margin-w=20"/>
 </p>
 
 <p align="center">
