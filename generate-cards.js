@@ -47,9 +47,7 @@ async function generate() {
 </svg>
 `;
 
-    const path = `assets/${name}.svg`;
-
-    fs.writeFileSync(path, svg);
+    fs.writeFileSync(`assets/${name}.svg`, svg);
 
     table += `
 <td width="50%" align="center">
@@ -65,7 +63,6 @@ async function generate() {
       table += "\n</tr>\n<tr>\n";
       col = 0;
     }
-
   }
 
   table += "\n</tr>\n</table>";
@@ -79,7 +76,7 @@ async function generate() {
 
   fs.writeFileSync("README.md", updated);
 
-  console.log("README atualizado com projetos");
+  console.log("README atualizado");
 }
 
 generate();
