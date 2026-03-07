@@ -14,23 +14,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
+      - name: Generate SVG
         run: |
-          npm init -y
-          npm install @octokit/rest
+          mkdir -p assets
+          echo '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100">
+          <rect width="100%" height="100%" fill="#0d1117"/>
+          <text x="50%" y="50%" fill="white" dominant-baseline="middle" text-anchor="middle">
+          Repo cards working
+          </text>
+          </svg>' > assets/test.svg
 
-      - name: Generate cards
-        run: node generate-cards.js
-
-      - name: Commit SVGs
+      - name: Commit file
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "actions@github.com"
-          git add assets/*.svg
-          git commit -m "update repo cards" || echo "no changes"
+          git add assets/test.svg
+          git commit -m "generate svg" || echo "no changes"
           git push
