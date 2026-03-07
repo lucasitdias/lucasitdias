@@ -2,8 +2,6 @@ name: Generate Repo Cards
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *" # roda todo dia à meia-noite (opcional)
 
 jobs:
   generate:
@@ -19,11 +17,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install @primer/github-sprite @octokit/rest
+          npm init -y
+          npm install @octokit/rest
 
       - name: Generate SVG cards
-        run: |
-          node generate-cards.js
+        run: node generate-cards.js
 
       - name: Commit & push cards
         run: |
