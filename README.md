@@ -119,7 +119,9 @@ Empresas onde atuei:
 <p align="center">
 
 <img src="https://img.shields.io/badge/Oracle-Database-red?style=for-the-badge&logo=oracle&logoColor=white"/>
+&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/VMware-Virtualization-607078?style=for-the-badge&logo=vmware&logoColor=white"/>
+&nbsp;&nbsp;
 <img src="https://img.shields.io/badge/Active%20Directory-Microsoft-0078D6?style=for-the-badge&logo=microsoft&logoColor=white"/>
 
 </p>
@@ -128,7 +130,8 @@ Empresas onde atuei:
 
 <h2 align="center"> 📂 Projetos em Destaque</h2>
 
-<table align="center">
+<table align="center" cellspacing="20">
+
 <tr>
 
 <td width="50%" align="center">
@@ -175,14 +178,6 @@ Empresas onde atuei:
 
 ---
 
-<h2 align="center"> 📈 Atividade no GitHub</h2>
-
-<p align="center">
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=lucasitdias&theme=github-dark&hide_border=true"/>
-</p>
-
----
-
 <h2 align="center"> 📊 Estatísticas GitHub</h2>
 
 <table align="center">
@@ -202,6 +197,12 @@ src="https://stats-github-readme.vercel.app/api/top-langs/?username=lucasitdias&
 <p align="center">
 <img height="200em"
 src="https://streak-stats.demolab.com?user=lucasitdias&theme=highcontrast&hide_border=true&border_radius=12&locale=pt_BR"/>
+</p>
+
+---
+
+<p align="center">
+<img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/output/github-contribution-grid-snake-dark.svg"/>
 </p>
 
 ---
@@ -227,7 +228,3 @@ src="https://streak-stats.demolab.com?user=lucasitdias&theme=highcontrast&hide_b
 </p>
 
 ---
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/output/github-contribution-grid-snake-dark.svg"/>
-</p>
