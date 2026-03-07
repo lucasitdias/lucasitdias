@@ -1,0 +1,34 @@
+name: Generate Repo Cards
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *" # roda todo dia à meia-noite (opcional)
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install @primer/github-sprite @octokit/rest
+
+      - name: Generate SVG cards
+        run: |
+          node generate-cards.js
+
+      - name: Commit & push cards
+        run: |
+          git config --local user.name "GitHub Actions"
+          git config --local user.email "actions@github.com"
+          git add assets/*.svg
+          git commit -m "Update repo cards" || echo "No changes"
+          git push
