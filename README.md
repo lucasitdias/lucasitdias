@@ -195,6 +195,6 @@ Empresas onde atuei:
 
 <p align="center">
 
-![Snake animation](https://github.com/lucasitdias/lucasitdias/blob/output/github-contribution-grid-snake.svg)
+<img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/output/github-contribution-grid-snake-dark.svg"/>
 
 </p>
