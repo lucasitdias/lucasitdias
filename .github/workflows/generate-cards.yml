@@ -13,15 +13,14 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
         with:
-          node-version: 18
+          fetch-depth: 0
 
-      - name: Install dependencies
+      - name: Sync with main
         run: |
-          npm install @octokit/rest
+          git fetch origin main
+          git checkout main
+          git pull --rebase origin main
 
       - name: Generate SVG
         run: |
@@ -33,11 +32,10 @@ jobs:
           </text>
           </svg>' > assets/test.svg
 
-      - name: Commit file
+      - name: Commit and push
         run: |
-          git config --local user.name "github-actions"
-          git config --local user.email "actions@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add assets/*.svg
-          git commit -m "generate svg" || echo "no changes"
-          git pull --rebase origin main
-          git push
+          git commit -m "update repo cards" || echo "no changes"
+          git push --force-with-lease origin main
