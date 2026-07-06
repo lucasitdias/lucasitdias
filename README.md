@@ -37,13 +37,13 @@ src="https://custom-icon-badges.demolab.com/github/followers/lucasitdias?color=2
 
 Profissional de **Tecnologia da Informação com mais de 10 anos de experiência**, atuando em **suporte técnico, infraestrutura e redes** em ambientes **corporativos e hospitalares**.
 
-Experiência em **implantação de sistemas corporativos, administração de Active Directory, VPN e sistemas operacionais Windows, Linux e macOS**, sempre focado em **disponibilidade, segurança e eficiência operacional**.
+Experiência em **implantação de sistemas de saúde e suporte a sistemas corporativos, administração de Active Directory, VPN e sistemas operacionais Windows, Linux e macOS**, sempre focado em **disponibilidade, segurança e eficiência operacional**.
 
 Possuo forte atuação em **suporte de primeiro e segundo nível**, manutenção preventiva de equipamentos, inventário de ativos e treinamento de usuários, garantindo estabilidade e continuidade dos serviços.
 
 Tenho experiência na melhoria de processos de suporte, redução de falhas operacionais e aumento da disponibilidade de sistemas em ambientes corporativos.
 
-Também possuo conhecimento em **Oracle Database, SQL e experiência com PL/SQL**, além de vivência com ferramentas de gestão de chamados como **GLPI e TOPDesk**.
+Também possuo conhecimentos em **Oracle Database e SQL**, adquiridos durante minha formação acadêmica e cursos complementares, além de experiência na utilização de **PL/SQL** durante atividades de suporte. Possuo ainda vivência com ferramentas de gestão de chamados, como **GLPI** e **TOPDesk**.
 
 Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informação e Desenvolvimento de Software**.
 
@@ -53,14 +53,14 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 
 - Implantação e administração de **Active Directory**
 - Configuração e gestão de **VPN**
-- Administração de servidores **Windows Server e Linux**
+- Administração de **Windows Server** e suporte a ambientes **Windows**, **Linux** e **macOS**
 - Suporte técnico **N1 e N2**
 - Manutenção preventiva de equipamentos
 - Inventário e padronização de ativos de TI
-- Administração de **Office 365**
+- Administração de **Microsoft 365**
 - Monitoramento e atualização de sistemas (**WSUS**)
 - Configuração de **redes estruturadas e access points**
-- Conhecimento em **Oracle Database, SQL e PL/SQL**
+- Conhecimentos em **Oracle Database e SQL**, além de experiência com **PL/SQL**
 - Virtualização com **VMware**
 - Containers com **Docker**
 - Ferramentas de Service Desk (**GLPI**, **TOPDesk**)
@@ -69,7 +69,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 
 <h2 align="center"> ☁️ Cloud | 🛡️ Segurança | 🏛️ Governança</h2>
 
-- Experiência com **Microsoft Azure**
+- Conhecimento em **Microsoft Azure**
 - Conhecimento em **AWS**
 - Conhecimento em **LGPD**
 - Conhecimento em **Microsoft Security, Compliance & Identity (SC-900)**
@@ -94,7 +94,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - 🚀 Aprimorando conhecimentos em **desenvolvimento e automação**
 - 🔎 Interesse em **arquitetura de software, testes e boas práticas**
 - ☁️ Estudos contínuos em **Cloud Computing e Segurança da Informação**
-- 💻 Desenvolvimento de projetos práticos utilizando Java, TypeScript, React, Node.js e bancos de dados relacionais e NoSQL.
+- 💻 Desenvolvimento de projetos pessoais e acadêmicos utilizando **Java, TypeScript, React, Node.js e bancos de dados relacionais e NoSQL**
 
 ---
 <h2 align="center"> 💼 Experiência Profissional</h2>
@@ -104,7 +104,10 @@ Experiência em ambientes corporativos e hospitalares atuando com suporte, infra
 Empresas onde atuei:
 
 - **Unimed**
+- **Vivver Sistemas**
+- **Stefanini**
 - **AGCO**
+- **DKTec**
 - **DHL**
 
 ---
