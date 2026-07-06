@@ -3,7 +3,7 @@
 </h1>
 
 <p align="center">
-IT Support & Infrastructure Analyst | Full Stack Developer Enthusiast
+IT Support | Infrastructure | Systems Implementation | Cloud Computing
   <!--
 IT Support | Infrastructure | Network Analyst | Active Directory | Windows Server | Linux | Cloud | Azure | AWS | DevOps | Full Stack Developer
 -->
@@ -94,6 +94,7 @@ Atualmente aprimorando conhecimentos em **Cloud Computing, Segurança da Informa
 - 🚀 Aprimorando conhecimentos em **desenvolvimento e automação**
 - 🔎 Interesse em **arquitetura de software, testes e boas práticas**
 - ☁️ Estudos contínuos em **Cloud Computing e Segurança da Informação**
+- 💻 Desenvolvimento de projetos práticos utilizando Java, TypeScript, React, Node.js e bancos de dados relacionais e NoSQL.
 
 ---
 <h2 align="center"> 💼 Experiência Profissional</h2>
@@ -117,9 +118,13 @@ Empresas onde atuei:
 
 ---
 
-<h2 align="center">💻 Tecnologias</h2>
+<h2 align="center">💻 Tecnologias e Ferramentas</h2>
 
-<h3 align="center">🔤 Linguagens</h3>
+<p align="center">
+Tecnologias utilizadas em minha experiência profissional, formação acadêmica, curso técnico e projetos desenvolvidos durante os estudos.
+</p>
+
+<h3 align="center">🔤 Linguagens e Tecnologias</h3>
 
 <p align="center">
 
@@ -133,7 +138,7 @@ Empresas onde atuei:
 </p>
 
 
-<h3 align="center">⚙️ Frameworks • Plataformas</h3>
+<h3 align="center">⚙️ ⚙️ Frameworks e Plataformas</h3>
 
 <p align="center">
 
@@ -176,9 +181,7 @@ Empresas onde atuei:
 <img title="Git" src="https://skillicons.dev/icons?i=git"/>
 <img title="Docker" src="https://skillicons.dev/icons?i=docker"/>
 
-<img title="Ubuntu" src="https://skillicons.dev/icons?i=ubuntu"/>
-<img title="Linux Mint" height="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linuxmint/linuxmint-original.svg"/>
-<img title="Fedora" height="48" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fedora/fedora-original.svg"/>
+<img title="Linux" src="https://skillicons.dev/icons?i=linux"/>
 
 <img title="Windows" src="https://skillicons.dev/icons?i=windows"/>
 <img title="macOS" src="https://skillicons.dev/icons?i=apple"/>
