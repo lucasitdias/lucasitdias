@@ -121,13 +121,13 @@ Empresas onde atuei:
 
 ---
 
-<h2 align="center">💻 Tecnologias e Ferramentas</h2>
+<h2 align="center"> 💻 Tecnologias e Ferramentas</h2>
 
 <p align="center">
 Tecnologias utilizadas em minha experiência profissional, formação acadêmica, curso técnico e projetos desenvolvidos durante os estudos.
 </p>
 
-<h3 align="center">🔤 Linguagens e Tecnologias</h3>
+<h3 align="center"> 🔤 Linguagens e Tecnologias</h3>
 
 <p align="center">
 
@@ -141,7 +141,7 @@ Tecnologias utilizadas em minha experiência profissional, formação acadêmica
 </p>
 
 
-<h3 align="center">⚙️ ⚙️ Frameworks e Plataformas</h3>
+<h3 align="center"> ⚙️ Frameworks e Plataformas</h3>
 
 <p align="center">
 
@@ -158,7 +158,7 @@ Tecnologias utilizadas em minha experiência profissional, formação acadêmica
 </p>
 
 
-<h3 align="center">🗄 Banco de Dados</h3>
+<h3 align="center"> 🗄 Banco de Dados</h3>
 
 <p align="center">
 
@@ -177,7 +177,7 @@ Tecnologias utilizadas em minha experiência profissional, formação acadêmica
 </p>
 
 
-<h3 align="center">🛠 DevOps • Infraestrutura • Sistemas</h3>
+<h3 align="center"> 🛠 DevOps • Infraestrutura • Sistemas</h3>
 
 <p align="center">
 
