@@ -1,0 +1,128 @@
+name: Atualizar cards de projetos
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 12 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cards-do-perfil
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o README do perfil
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Atualizar os cards
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from html import escape
+          from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+
+          user = "lucasitdias"
+          start = "<!-- PROJECT_CARDS:START -->"
+          end = "<!-- PROJECT_CARDS:END -->"
+          readme = Path("README.md")
+          content = readme.read_text(encoding="utf-8")
+
+          if content.count(start) != 1 or content.count(end) != 1:
+              raise SystemExit("Adicione um único par de marcadores PROJECT_CARDS no README.")
+
+          before, _, remainder = content.partition(start)
+          _, separator, after = remainder.partition(end)
+          if not separator:
+              raise SystemExit("Os marcadores PROJECT_CARDS estão fora de ordem.")
+
+          repos = []
+          page = 1
+
+          while len(repos) < 6:
+              query = urlencode({
+                  "type": "owner",
+                  "sort": "pushed",
+                  "direction": "desc",
+                  "per_page": 100,
+                  "page": page,
+              })
+              request = Request(
+                  f"https://api.github.com/users/{user}/repos?{query}",
+                  headers={
+                      "Accept": "application/vnd.github+json",
+                      "Authorization": f"Bearer {os.environ['GH_TOKEN']}",
+                  },
+              )
+              with urlopen(request, timeout=30) as response:
+                  batch = json.load(response)
+
+              repos.extend(
+                  repo for repo in batch
+                  if repo["name"].lower() != user
+                  and not repo["fork"]
+                  and not repo["archived"]
+              )
+              if len(batch) < 100:
+                  break
+              page += 1
+
+          repos = repos[:6]
+          if not repos:
+              raise SystemExit("Nenhum projeto elegível encontrado. Cards atuais preservados.")
+
+          rows = []
+          for index in range(0, len(repos), 2):
+              pair = repos[index:index + 2]
+              cells = []
+              for repo in pair:
+                  name = escape(repo["name"], quote=True)
+                  link = escape(repo["html_url"], quote=True)
+                  query = urlencode({
+                      "username": user,
+                      "repo": repo["name"],
+                      "theme": "chartreuse-dark",
+                      "hide_border": "true",
+                      "description_lines_count": 1,
+                  })
+                  image = escape(
+                      f"https://github-readme-stats-sigma-five.vercel.app/api/pin/?{query}",
+                      quote=True,
+                  )
+                  layout = 'colspan="2"' if len(pair) == 1 else 'width="50%"'
+                  cells.append(
+                      f'  <td {layout} align="center">\n'
+                      f'    <a href="{link}">\n'
+                      f'      <img width="400" src="{image}" alt="{name}" />\n'
+                      f'    </a>\n'
+                      f'  </td>'
+                  )
+              rows.append("<tr>\n" + "\n".join(cells) + "\n</tr>")
+
+          updated = f"{before}{start}\n\n" + "\n\n".join(rows) + f"\n\n{end}{after}"
+          readme.write_text(updated, encoding="utf-8")
+          PY
+
+      - name: Publicar se os cards mudaram
+        run: |
+          if git diff --quiet -- README.md; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- README.md
+          git commit -m "chore: atualiza cards dos projetos"
+          git push origin HEAD
