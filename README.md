@@ -241,12 +241,12 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
 <tr>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/whisper_desktop">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=whisper_desktop&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="whisper_desktop" />
+      <img width="400" src="./assets/project-cards/project-1.svg" alt="whisper_desktop" />
     </a>
   </td>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/cosulta-cnpj">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=cosulta-cnpj&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="cosulta-cnpj" />
+      <img width="400" src="./assets/project-cards/project-2.svg" alt="cosulta-cnpj" />
     </a>
   </td>
 </tr>
@@ -254,12 +254,12 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
 <tr>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/desafio-tecnico-berna">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=desafio-tecnico-berna&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="desafio-tecnico-berna" />
+      <img width="400" src="./assets/project-cards/project-3.svg" alt="desafio-tecnico-berna" />
     </a>
   </td>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/cinelogplay-web">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=cinelogplay-web&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="cinelogplay-web" />
+      <img width="400" src="./assets/project-cards/project-4.svg" alt="cinelogplay-web" />
     </a>
   </td>
 </tr>
@@ -267,12 +267,12 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
 <tr>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/computer-science-studies">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=computer-science-studies&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="computer-science-studies" />
+      <img width="400" src="./assets/project-cards/project-5.svg" alt="computer-science-studies" />
     </a>
   </td>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/app-compras-android">
-      <img width="400" src="https://github-readme-stats-sigma-five.vercel.app/api/pin/?username=lucasitdias&amp;repo=app-compras-android&amp;theme=chartreuse-dark&amp;hide_border=true&amp;description_lines_count=1" alt="app-compras-android" />
+      <img width="400" src="./assets/project-cards/project-6.svg" alt="app-compras-android" />
     </a>
   </td>
 </tr>
