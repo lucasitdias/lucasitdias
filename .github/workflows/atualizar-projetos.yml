@@ -17,12 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar o README do perfil
+      - name: Baixar o repositório do perfil
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.repository.default_branch }}
 
-      - name: Atualizar os cards
+      - name: Gerar os cards e atualizar o README
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -35,13 +35,14 @@ jobs:
           from urllib.request import Request, urlopen
 
           user = "lucasitdias"
+          limit = 6
           start = "<!-- PROJECT_CARDS:START -->"
           end = "<!-- PROJECT_CARDS:END -->"
           readme = Path("README.md")
           content = readme.read_text(encoding="utf-8")
 
           if content.count(start) != 1 or content.count(end) != 1:
-              raise SystemExit("Adicione um único par de marcadores PROJECT_CARDS no README.")
+              raise SystemExit("O README precisa de um único par de marcadores PROJECT_CARDS.")
 
           before, _, remainder = content.partition(start)
           _, separator, after = remainder.partition(end)
@@ -50,8 +51,7 @@ jobs:
 
           repos = []
           page = 1
-
-          while len(repos) < 6:
+          while len(repos) < limit:
               query = urlencode({
                   "type": "owner",
                   "sort": "pushed",
@@ -79,50 +79,70 @@ jobs:
                   break
               page += 1
 
-          repos = repos[:6]
+          repos = repos[:limit]
           if not repos:
               raise SystemExit("Nenhum projeto elegível encontrado. Cards atuais preservados.")
+
+          cards_dir = Path("assets/project-cards")
+          cards_dir.mkdir(parents=True, exist_ok=True)
 
           rows = []
           for index in range(0, len(repos), 2):
               pair = repos[index:index + 2]
               cells = []
-              for repo in pair:
-                  name = escape(repo["name"], quote=True)
+              for offset, repo in enumerate(pair):
+                  repo_name = repo["name"]
+                  name = escape(repo_name, quote=True)
                   link = escape(repo["html_url"], quote=True)
-                  query = urlencode({
-                      "username": user,
-                      "repo": repo["name"],
-                      "theme": "chartreuse-dark",
-                      "hide_border": "true",
-                      "description_lines_count": 1,
-                  })
-                  image = escape(
-                      f"https://github-readme-stats-sigma-five.vercel.app/api/pin/?{query}",
-                      quote=True,
+                  short_name = escape(
+                      repo_name if len(repo_name) <= 30 else repo_name[:29] + "…"
                   )
+                  language = escape(repo.get("language") or "Repositório público")
+                  card_path = cards_dir / f"project-{index + offset + 1}.svg"
+
+                  card_path.write_text(
+                      '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100"'
+                      ' viewBox="0 0 400 100">'
+                      '<rect x="1" y="1" width="398" height="98" rx="10"'
+                      ' fill="#0d1117" stroke="#30363d"/>'
+                      '<text x="20" y="39" fill="#7fff00"'
+                      ' font-family="monospace" font-size="17" font-weight="bold">'
+                      f'{short_name}</text>'
+                      '<text x="20" y="71" fill="#c9d1d9"'
+                      f' font-family="sans-serif" font-size="14">{language}</text>'
+                      '</svg>\n',
+                      encoding="utf-8",
+                  )
+
                   layout = 'colspan="2"' if len(pair) == 1 else 'width="50%"'
                   cells.append(
                       f'  <td {layout} align="center">\n'
                       f'    <a href="{link}">\n'
-                      f'      <img width="400" src="{image}" alt="{name}" />\n'
+                      f'      <img width="400" src="./{card_path.as_posix()}" alt="{name}" />\n'
                       f'    </a>\n'
                       f'  </td>'
                   )
+
               rows.append("<tr>\n" + "\n".join(cells) + "\n</tr>")
+
+          for slot in range(len(repos) + 1, limit + 1):
+              (cards_dir / f"project-{slot}.svg").unlink(missing_ok=True)
 
           updated = f"{before}{start}\n\n" + "\n\n".join(rows) + f"\n\n{end}{after}"
           readme.write_text(updated, encoding="utf-8")
           PY
 
-      - name: Publicar se os cards mudaram
+      - name: Publicar os cards e o README
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          if git diff --quiet -- README.md; then
+          git add -- README.md assets/project-cards
+
+          if git diff --cached --quiet; then
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- README.md
           git commit -m "chore: atualiza cards dos projetos"
-          git push origin HEAD
+          git push origin "HEAD:refs/heads/$DEFAULT_BRANCH"
