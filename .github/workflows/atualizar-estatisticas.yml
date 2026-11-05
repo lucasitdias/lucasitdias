@@ -22,11 +22,181 @@ jobs:
         with:
           ref: ${{ github.event.repository.default_branch }}
 
+      - name: Auditar acesso privado e registrar períodos
+        env:
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
+          REQUIRED_PRIVATE_REPOS: ${{ vars.STATS_REQUIRED_PRIVATE_REPOS || 'brasaliment/sistema-eventos' }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+          from urllib.error import HTTPError
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
+          
+          
+          def api(path, payload=None):
+              token = os.environ.get("PROFILE_STATS_TOKEN", "")
+              if not token:
+                  raise SystemExit("Configure o secret PROFILE_STATS_TOKEN.")
+              request = Request(
+                  "https://api.github.com" + path,
+                  data=json.dumps(payload).encode() if payload is not None else None,
+                  headers={
+                      "Accept": "application/vnd.github+json",
+                      "Authorization": f"Bearer {token}",
+                      "Content-Type": "application/json",
+                      "User-Agent": "profile-statistics-audit",
+                  },
+              )
+              try:
+                  with urlopen(request, timeout=60) as response:
+                      headers = response.headers
+                      data = json.load(response)
+              except HTTPError as error:
+                  raise SystemExit(
+                      f"Consulta obrigatória falhou (HTTP {error.code}). "
+                      "Confira o token, seu acesso aos privados e a autorização SSO."
+                  ) from None
+              if headers.get("X-GitHub-SSO"):
+                  raise SystemExit("O GitHub indicou acesso SSO pendente ou parcial.")
+              if isinstance(data, dict) and (data.get("errors") or data.get("incomplete_results")):
+                  raise SystemExit("A API retornou erros ou resultados incompletos.")
+              return data, headers
+          
+          
+          user = "lucasitdias"
+          identity, headers = api("/user")
+          if identity.get("login", "").lower() != user:
+              raise SystemExit("O token precisa pertencer à conta lucasitdias.")
+          scopes = {scope.strip() for scope in headers.get("X-OAuth-Scopes", "").split(",")}
+          if "repo" not in scopes or not ({"read:user", "user"} & scopes):
+              raise SystemExit("O token classic precisa dos escopos repo e read:user.")
+          
+          repos = []
+          page = 1
+          while True:
+              query = urlencode({
+                  "visibility": "all",
+                  "affiliation": "owner,collaborator,organization_member",
+                  "per_page": 100,
+                  "page": page,
+              })
+              batch, _ = api("/user/repos?" + query)
+              if not isinstance(batch, list):
+                  raise SystemExit("Resposta inválida ao listar repositórios.")
+              repos.extend(batch)
+              if len(batch) < 100:
+                  break
+              page += 1
+          
+          owned = [repo for repo in repos if repo["owner"]["login"].lower() == user]
+          owned_private = [repo for repo in owned if repo["private"]]
+          expected_private = identity.get("owned_private_repos")
+          if expected_private is None or len(owned_private) != expected_private:
+              raise SystemExit("Não foi possível comprovar a listagem completa dos privados pessoais.")
+          if len(owned) > 100:
+              raise SystemExit("O gerador de estrelas tem limite de 100 repositórios. Amplie-o antes de publicar.")
+          
+          required = os.environ.get("REQUIRED_PRIVATE_REPOS", "brasaliment/sistema-eventos")
+          required = [name.strip() for name in required.replace("\n", ",").split(",") if name.strip()]
+          if not required:
+              raise SystemExit("Informe ao menos um repositório privado obrigatório.")
+          for name in required:
+              repo, _ = api("/repos/" + name)
+              if repo.get("full_name", "").lower() != name.lower() or not repo.get("private"):
+                  raise SystemExit("Um repositório obrigatório não foi confirmado como privado.")
+          
+          commits, _ = api("/search/commits?" + urlencode({"q": f"author:{user}", "per_page": 1}))
+          if commits.get("incomplete_results") is not False:
+              raise SystemExit("A busca de commits não confirmou resultado completo.")
+          commit_count = commits.get("total_count")
+          if not isinstance(commit_count, int) or commit_count < 0:
+              raise SystemExit("Total de commits inválido.")
+          
+          query = """
+          query($login: String!) {
+            user(login: $login) {
+              pullRequests(first: 1) { totalCount }
+              issues { totalCount }
+              repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+                totalCount
+              }
+              contributionsCollection {
+                startedAt
+                endedAt
+                totalCommitContributions
+                contributionCalendar { totalContributions }
+              }
+              repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
+                totalCount
+                pageInfo { hasNextPage }
+                nodes {
+                  languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                    pageInfo { hasNextPage }
+                  }
+                }
+              }
+            }
+          }
+          """
+          response, _ = api("/graphql", {"query": query, "variables": {"login": user}})
+          data = response.get("data", {}).get("user")
+          if not data:
+              raise SystemExit("O GitHub não retornou os dados do perfil.")
+          languages = data["repositories"]
+          if languages["totalCount"] != sum(not repo["fork"] for repo in owned):
+              raise SystemExit("REST e GraphQL retornaram conjuntos diferentes de repositórios próprios.")
+          if languages["pageInfo"]["hasNextPage"] or any(
+              node["languages"]["pageInfo"]["hasNextPage"] for node in languages["nodes"]
+          ):
+              raise SystemExit("O limite do gerador de linguagens omitiria dados. Publicação bloqueada.")
+          
+          period = data["contributionsCollection"]
+          report = {
+              "consulted_at_utc": datetime.now(timezone.utc).isoformat(),
+              "account": user,
+              "private_access": {
+                  "owned_private_repositories_checked": len(owned_private),
+                  "required_private_repositories_checked": len(required),
+                  "accessible_private_repositories": sum(repo["private"] for repo in repos),
+              },
+              "metrics": {
+                  "commits": commit_count,
+                  "prs": data["pullRequests"]["totalCount"],
+                  "issues": data["issues"]["totalCount"],
+                  "stars": sum(repo["stargazers_count"] for repo in owned),
+                  "contribs": data["repositoriesContributedTo"]["totalCount"],
+              },
+              "periods": {
+                  "commits": "Busca author:lucasitdias, sem filtro de data, no índice visível ao token",
+                  "prs_and_issues": "Histórico visível ao token, sem filtro de data",
+                  "stars": "Estrelas atuais dos repositórios próprios visíveis ao token",
+                  "contribution_calendar": {
+                      "from": period["startedAt"],
+                      "to": period["endedAt"],
+                      "commits": period["totalCommitContributions"],
+                      "contributions": period["contributionCalendar"]["totalContributions"],
+                  },
+                  "languages": "Bytes atuais dos repositórios próprios, públicos e privados, sem forks",
+              },
+              "coverage": (
+                  "Privados pessoais comparados ao total informado pela API; "
+                  "repositórios de organizações conferidos pela lista obrigatória. "
+                  "A busca de commits depende da indexação do GitHub."
+              ),
+          }
+          Path(".stats-audit.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print("Acesso privado, identidade, escopos, paginação e períodos conferidos.")
+          PY
+
       - name: Gerar estatísticas gerais
         uses: stats-organization/github-readme-stats-action@v1
         with:
           card: stats
-          options: username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&hide_border=true&border_radius=12&locale=pt-br
+          options: username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&number_format=long&hide_border=true&border_radius=12&locale=pt-br
           path: assets/stats/stats.svg
           token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
@@ -45,20 +215,49 @@ jobs:
           path: assets/stats/streak.svg
           token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
-      - name: Conferir os arquivos gerados
+      - name: Validar os painéis contra a auditoria
         run: |
           python3 - <<'PY'
+          import json
           import xml.etree.ElementTree as ET
+          from datetime import datetime, timezone
           from pathlib import Path
-
+          
+          audit = json.loads(Path(".stats-audit.json").read_text(encoding="utf-8"))
+          error_markers = (
+              "something went wrong", "resource not accessible", "maximum retries",
+              "bad credentials", "api rate limit", "could not fetch", "user not found",
+          )
+          roots = {}
           for name in ("stats.svg", "top-langs.svg", "streak.svg"):
               path = Path("assets/stats") / name
               root = ET.parse(path).getroot()
-              if root.tag != "{http://www.w3.org/2000/svg}svg":
-                  raise SystemExit(f"Arquivo SVG inválido: {path}")
-              if path.stat().st_size == 0:
-                  raise SystemExit(f"Arquivo vazio: {path}")
-              print(f"Conferido: {path}")
+              text = " ".join(root.itertext()).lower()
+              if root.tag != "{http://www.w3.org/2000/svg}svg" or not text.strip():
+                  raise SystemExit(f"SVG inválido: {name}")
+              if any(marker in text for marker in error_markers) or any(
+                  element.get("data-testid") == "message" for element in root.iter()
+              ):
+                  raise SystemExit(f"Erro no painel {name}; publicação bloqueada.")
+              roots[name] = root
+          
+          for metric, expected in audit["metrics"].items():
+              elements = [element for element in roots["stats.svg"].iter() if element.get("data-testid") == metric]
+              if len(elements) != 1:
+                  raise SystemExit(f"Não foi possível conferir a métrica {metric}.")
+              raw = "".join(elements[0].itertext()).strip()
+              if not raw.isdecimal() or int(raw) != expected:
+                  raise SystemExit(
+                      f"A métrica {metric} divergiu da consulta de auditoria. "
+                      "Pode haver atividade durante a coleta; execute novamente."
+                  )
+          
+          audit["validated_at_utc"] = datetime.now(timezone.utc).isoformat()
+          Path("assets/stats/audit.json").write_text(
+              json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+          )
+          print("Os cinco totais do painel coincidem com a consulta autenticada de auditoria.")
+          print("A validação dos painéis de linguagens e sequência confere formato e mensagens de erro.")
           PY
 
       - name: Publicar as estatísticas
