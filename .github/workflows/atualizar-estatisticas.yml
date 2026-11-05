@@ -475,6 +475,217 @@ jobs:
               require(streak_node(roots["streak.svg"], "translate(82.5, 114)").text == date_range(data["first_activity"], today.isoformat()), "Intervalo total divergente no SVG.")
           
           
+          """Troféus e badges locais derivados exclusivamente da auditoria.
+          
+          Os ícones e os limites das classificações são adaptados de
+          ryo-ma/github-profile-trophy, versão fixada em TROPHY_SOURCE.
+          """
+          import base64
+          import gzip
+          import hashlib
+          import json
+          import xml.etree.ElementTree as ET
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          
+          TROPHY_SOURCE = "https://github.com/ryo-ma/github-profile-trophy/tree/43736b50a82fca73c8df1c81abb40aa03519975c"
+          TROPHY_LICENSE = """Copyright (c) 2020 ryo-ma
+          
+          Permission is hereby granted, free of charge, to any person obtaining
+          a copy of this software and associated documentation files (the
+          "Software"), to deal in the Software without restriction, including
+          without limitation the rights to use, copy, modify, merge, publish,
+          distribute, sublicense, and/or sell copies of the Software, and to
+          permit persons to whom the Software is furnished to do so, subject to
+          the following conditions:
+          
+          The above copyright notice and this permission notice shall be
+          included in all copies or substantial portions of the Software.
+          
+          THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+          EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+          MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+          NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+          LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+          OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+          WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+          """
+          
+          PROFILE_NS = "http://www.w3.org/2000/svg"
+          
+          
+          def profile_require(condition, message):
+              if not condition:
+                  raise RuntimeError(message)
+          
+          
+          def profile_tag(name):
+              return "{" + PROFILE_NS + "}" + name
+          
+          
+          def profile_one(root, attribute, value):
+              items = [e for e in root.iter() if e.get(attribute) == value]
+              profile_require(len(items) == 1, "Elemento de perfil ausente ou duplicado: " + value)
+              return items[0]
+          
+          
+          # Todas as condições do gerador original para estas seis categorias.
+          TROPHY_RULES = {
+              "Commits": [(1,"C","First Commit"),(10,"B","Middle Committer"),(100,"A","High Committer"),(200,"AA","Hyper Committer"),(500,"AAA","Ultra Committer"),(1000,"S","Super Committer"),(2000,"SS","Deep Committer"),(4000,"SSS","God Committer")],
+              "PullRequest": [(1,"C","First Pull"),(10,"B","Middle Puller"),(20,"A","High Puller"),(50,"AA","Hyper Puller"),(100,"AAA","Ultra Puller"),(200,"S","Super Puller"),(500,"SS","Deep Puller"),(1000,"SSS","God Puller")],
+              "Reviews": [(1,"C","New Reviewer"),(3,"B","Intermediate Reviewer"),(8,"A","Active Reviewer"),(20,"AA","Hyper Reviewer"),(30,"AAA","Ultra Reviewer"),(45,"S","Super Reviewer"),(57,"SS","Deep Reviewer"),(70,"SSS","God Reviewer")],
+              "Repositories": [(1,"C","First Repository"),(10,"B","Middle Repo Creator"),(20,"A","High Repo Creator"),(30,"AA","Hyper Repo Creator"),(35,"AAA","Ultra Repo Creator"),(40,"S","Super Repo Creator"),(45,"SS","Deep Repo Creator"),(50,"SSS","God Repo Creator")],
+              "Experience": [(2,"C","Newbie"),(6,"B","Junior Dev"),(11,"A","Intermediate Dev"),(18,"AA","Experienced Dev"),(28,"AAA","Expert Dev"),(40,"S","Master Dev"),(55,"SS","Grandmaster"),(70,"SSS","Seasoned Veteran")],
+              "Stars": [(1,"C","First Star"),(10,"B","Middle Star"),(30,"A","You are a Star"),(50,"AA","High Star"),(100,"AAA","Super Star"),(200,"S","Stargazer"),(700,"SS","High Stargazer"),(2000,"SSS","Super Stargazer")],
+          }
+          
+          # Preenchido na montagem do workflow: ícones SVG da versão fixada acima.
+          TROPHY_ICON_DATA = "H4sIAAAAAAACA+1d224cxxH9lQaNADagEafvPQZjQdJD/GIgiPISQC+r5VIksuQSy7UkK8i/55zTsxQlMpLpKJDilG3t3Lu7bqequkrwPw4eHXx/8PzCuf2fo+PVydUPPMP5+uxitdj+abs4Pltd7NzZ8R+fHzx6fuBeznf+ul1cXJ1stue4v93sFrvVtyl/9/xg/r7/Ypyr3ebSbU5OrlY7vDn+AUPw1rDcrDdb3PkmL2texucHhz/8m2/yb/nIj3d8VUINi7T/aib08H1K9ejo8JoVR1evXro3+Do0jPcLT0acvD473p32eXB1ujp7ebq7vnx1tnr9ZMOPRje6yP9w9+Rsvcatn7frb795BE65N+friyvcOd3tLr8/PHz9+vXD1/HhZvvyMIzjeIiJP2Dn0eVid+ooiZ+q8+NpeJV+rK+G9PYdI2684kfn/XJ0D3MOw8M2ZeeH4PzVgKuUGg7e8TYOPA2Od3Hwt4bjyoftz+sVhl29Wl1sjo+x/D5JeJhdXAR8h+kc6U2uX+lfLO58iC4soot6w7tCnugK1wOu8EYZwn84xp0siM6f+nEJekF9fJhKHbBcPw78eRZ1O/E2hvJvzzFWXvh5CTgO/rTdvHb+x/j2HMz64KX0wUv55mqWZ9vleuWWVAeq0JI6VHBClUzv9OKbk/GknLzAjetPd6s3O+lemVWP359sLnbDyeL8bM07Tzc/b89W2wfup83F5upysVztX7k6e0t51RszjMfee9z44dHRIce+NoMjKpuuDh4cPL0vLDw1WPhMsPDUYMFg4cvBwtOPwcKT+8LCk/vCwqdBob1YTSfHN7j4/hf1/p/cCQgffvMlIeGJQYJBwpeDhCcfg4THMyR0zf8VOnptDNN4ubtpDfP1++YAE3HdTC63q6vV9tXq8dXlarn7y2J3tsE7b346O/4b/rjz1WonAzg6X+0Wx4vdAudPtyvAzLF78Yu73Oy2oNf5hz4/cK+3Z7vd6oIP/rzarbbu2QqG/RInWCgUfwThF0eHN4Y6eul2NwBM52tiWBgfjvrnQdmffeeulov16ltep/5seHf+3Q0e+9qKqLvabTd/pwQuNherTsc7xcSaXPZjdLBPGmVzQ4LWeze05FJ1AxSzBDf4GFzGKz5k/FBrccDLcXLQ+qFBcT2fwnwL3kilYRB8V8bmfEh45CcXGt4JIbjYIk6ydxHfYqiEUXwhQGEi/JlgBkPll7wxgnMcAFCDBcUMe+MUtfK4HiZaH24OLbhl5Rf4bH/MHHlMWqzn7JiQ1HEaUEhqeCi4FWtxia/mMbiJD2DqgeOAmMgHYcxuIodgpBOuK15IeKEmt06kBI/4nVsOHJicIulBVIMEUjsV8W/wWP4QuLrGJ3yF/+G8Oj4GI6s44SNm9CmBGWRN1CfAnSE08U5HSIqjNPHBk+cikmIhbyPILVHLG93EIVLmHVpBJOJ63Ad7J+DdELU6rn2kIDEB1w3mYhjJYbw+67M6koFVUPA5uZylQx5cJG+BaUPXIEd9IZWpH/EuPp8waStkjnd14pSQkdQMDIhkAs4T6AcHMAbmobQmigTMAb9BDqbLxU1UrK5tTaoCwSYuDiyAHD3FixH1W4TtVAdcDbk5SsFjnQG2gLVgePKV6hsLyGuYK/cH1KCaZinGWac8bYUnVLgIkwJjxYJIwcl2sDasBWsHU/ic4sy0ONoMNRGEYNWNlkQLwO3YV0nTaBJM5ZyQWxR5oC6PnpbiXU5UB04qtZMwh8nTpjhZ0qwgE3P0KaEILkYeY+VM+iEl4JRPXYsiJRuh9RlkDAWsKhQldIuzgNTQZR20YlBDLaHyjTw0uiIuCSxIwhZQiPlgNjC1QhChPdPKyXcuEkvQKnj0/I7CBMsidTFAjhkCgOIkV4k+PlfoDFGIU1DRCnSHStSaE5LU0Uk8WJiMDeNSoeffYR9i3IxWQoaw8gi9hBlTT6n+kQyQZqcOGUPiD0U7VKEHLaVRiypRi5NyZZlqQYygeDAyJ86kdGha2ETqR+omGTEKTCnbIqnTojlB6IyeJH+QSNTmsYjDQbYBnkvrcwe3SS8IWDwJ4NpDR3DeJjwEL8hus6kHLxUmMhM9E2GC5HuqmE5k+Z1o3+moosBruiYAnKRBxD5qfl8uJwOgTtKq7in2v7W/ToZEEdodAD0BWRv5A/3F8rmukVzlu4m8FU/4HH8m+Rqu0c+jxeujDC11JxI0L0YlFwTumSAkx0JY7G4naeBaZj0iSlVCCJ7zran7rT1mk7eczc8Oi3Nx7Qx0JbbUqQqUaNETgTM1itoUoTVreaUscCKzl9Q3AuAku+cSyAatM4rRLQsUiJSpewAv34JXiIwDodH77mSilxMQjJIGqE9JQluiHI8pkA9hdi5Rb+ciOSYJtf+GHu4KVaGLQAAsez4v8x2+QZ9HklNnG51QdydUnSTF7jCRu74ERRyOboXajeABqAFc8pmrAfyF/o6fSAynjwo0Yuoao1CDaA8mwZlEwTpJjIxeqqgIXfvkiDEttaWO+hKuWKoijE9ER/pbAjCmBNTT6RZqDqwRkJ4YuEBUjCvI4QDeBSgk8SnGjlyVvxOZMaXZlOWtJ4Kwx/WaHrdK5RF8Eam5gjLbQmptFrQUvdw88YINMQBTJjE2ghcBSuJx22PFzCTKSL8JBlAtgsClde/Q+SXKKc3uIYJQF0pDIJFuNQk8CSm1JmQ37hzxVlf2jGXHGRCkH1SyLkbqTdG/XolI1QJ4mwP4MCl6hAR+2wi0Ef/bPr4N9yPhORXanKIdOa9J0c7UjRrBUu3RLmVJvMx+D3MjQ6boFPWFDklt7xIls0zch0TkuYEIYaLnhmonYjhPcp1BnNpIVWz0t47Ra6FyJbrKrICrGxHsupTuxSgK+gNCINExC3DozRnAQm0JGpidVxh6kiGnOVIZ5VII/rfZEhJMJRVPrjAAAEmkKxGkc+2GDBkoYSX+tc44rRLSzT0WEYzDShTuQzUJP1hNa3u0bN0BKVbEmiIDBDzg6CkKaBDCkgvAQHAykJvRSdAkziEayE4DyBJ5AH8ZnvQ0JQhkQQmvMaCPtUNkGnN3hTqRD+Arsj+5kNjuYMpUGcZFRgae1hGbvCpjlB7YSkcYUA+tKJiiZY0djBG9kS9BQDT1Pwhjq3IamDGTowRya88SegQfqEmjhIe5lXiAKuoXVhGhVHgBcJ2KCOf9HlMxtMagtIA5vKzyIN2P4r1J7ixINJjUM3jHauiV1kRvZgFcER7cZsRUPQUQxIie4hArohIGqiZpKCl0p0omDIqP6dRIFkN8Xe8dHBagIMXPJ4LUuE8SKRlQxyCPfqXiFjEMy2MaEwj3TYTyLrUF9FLH4JIKrSwwKkTeDcrKuHdEVOTblMXCjCJU5XDER8FxlRGTkjbLjjGFTIDz8CJJ1xktTyQtIWjKUiooqYyVIW7q70Utjh6ES4H3lzIxVOXkifQg56gMWaA0UHsIqUfyIAPQDxZk/ipTg35EcTXGaQ4OtUhYEcOlxJyDUQbjYy+cSIyzaw8HIbjbTGjTRPeX6JiCvIACXmXdkwIyJb9hHx/OxqMsWgFN7DGAYGHaW4BEzlxacSlXo+yCGl/lXRi/UK/4qMpxUiFzkdcnKyJcchSKCRISo4eghKTn9kxCMn+atndwkBtmZE0/UDtAJB2YCNFXItWH86YjxoeywA6iwlzSopQ89WjayxGkeptliYkYUAp6k+VbJ4qwewAdCdTK5cY54u1KOPaAUzMxOckze0O/A8Qgk+hmWpz9DQ1ulAtglkftYcpGEhs9OFFPFFbXNxGC9izwuoJNKmbr4SviI1hF6MHtHGv0bYOgo/ZVlK4z5MjhDkXxlABhaAnLUn4lBGSIlUQsY49CjOmBXt1nEeQ4rYDqmcUNbWUoHSJfvBzNvH1Dm59PomfmXkKWtjRuNxAU+T1DIO4tESDhEhLDQyGiNkWq6wmybFpcoo/N2lAoyrmbktg2zu6gznEbw3lQc4fIx8hgtgoEpzjnI3G/61O48RHqnEkPRRG4oJI+jOINgbQwMm2aSqnX1OEicTeDcUTpGTY5NO6xpyOOdsuSNFX2PZLuecFZmVTmdhXly4CP0cWkOKRK7tr5Ic1VoT3tpCjmnWgoQSf0sdqXyM3tTTr0RFgbQ5QXyUyFaqDkjDsKdzCrZVpbgl9Yal1avXYxlF4mRV6QKBC6KjTRtkxCHlQVpeiyKEFpY99SS7M9+b53U2fQD4wYqPE96ajiWpKhcB8oyfTJKAqfmqCYr6eFkTsiZIa2ZRrza24xQsRxzpynHhAxw1PgMwquYMOjFE9Rj3wDkCJoEeT9bX4gXtDuBpVHipnmLLxdb/LFOW2MsyL29LZva1IlKwMMbrCRCVHOZ79ZS4Gn3HcdZZKJzIHKcxckKIbwXB4AUntDkwAj6rf0vXGvFLCvhGirzHMkMpfb1GTubEABEx0GfT/FmRsNgCY/Re0Mekg3a3+VKkhuL+et2NJ3+fLsZoPAUoRr22QGyXK9BQa5yPFyT6vIrKHpPCEJcmvKe/ifoIGZEchk5ADNJeqWvtM1p5/au+jp0MSc0WurDrqQGZOSp+Ocyrs0b/ZR2Iy1tLkcEe3JG2emteMd8XSlqGcOpTmwGOc9DK9InESWmX6Z8aitRb6IJay1a8rQ2AvLl0qrqzYiSt9MKT1JmbVEfqHvyPu+4yEUjMIVaakSSsBD0dYuWcpgawjaN5AW0zty2SCqcYdJFURtrYeevHKf3iupLMKLNYOVJMABsiyVz9KtIa5mjsXEauReqMC8qNrQbZPAV29sxx2+1O++GPSrCsKPP39BOBwfr6Z2r4LwJz65syD84TdfsiD82ArCVhD+cgXhxx8tCFtF2CrCVhG2irBVhK0ibBVhqwhbRdgqwlYRtoqwVYStImwVYasIW0XYKsJWEbaKsFWErSJsFWGrCFtF+PdaEb4ufpZ98TPmG+Wekm8We3T10dLndQn2PqVPK35a8fO/Wvy8Wf78dPuD9T98lv4Ha4AwDPh6GyCsA8I6IKwDwjogrAPCOiCsA8I6IKwDwjogrAPCOiCsA8I6IKwDwjogrAPCOiCsA8I6IKwDwjogrAPCOiCsA+J33wFRrQHCip+/7wYI6/YxZbdun/e7fazd5/O0+1i/j6HA19rv88y6fazbx7p9rNvHun2s28e6fazbx7p9rNvHun2s28e6fazbx7p9rNvHun2s28e6fazbx7p9rNvHun2s28e6ff6f/w8Yzz5/Sfjk5EUry3uVhD/xyZ0l4Q+/+ZIl4WdWELaC8JcrCD/7aEHYKsJWEbaKsFWErSJsFWGrCFtF2CrCVhG2irBVhK0ibBVhqwhbRdgqwlYRtoqwVYStImwVYasIW0XYKsL2f8D4dX8nfl+Ctb8Tb8XPr6b4ea+/E//M+h8+S/+DNUAYBny9DRDWAWEdENYBYR0Q1gFhHRDWAWEdENYBYR0Q1gFhHRDWAWEdENYBYR0Q1gFhHRDWAWEdENYBYR0Q1gFhHRDWAWH/BwxrgLDi5/92A4R1+5iyW7fP+90+1u7zedp9rN/HUODr7Pf5578AINtAHUbSAAA="
+          TROPHY_ICON_SHA256 = "4386ccb941096e94c12d8fddea0039fac04edd00284f80b61c9e6a5f7a18003a"
+          
+          
+          def trophy_condition(category, value):
+              profile_require(type(value) is int and value >= 0, "Valor inválido no troféu.")
+              rules = TROPHY_RULES[category]
+              reached = [rule for rule in rules if value >= rule[0]]
+              if not reached:
+                  return {"rank": "?", "message": "Unknown", "progress": 0.0}
+              threshold, level, message = reached[-1]
+              next_rule = next((rule for rule in rules if rule[0] > value), None)
+              progress = 1.0 if next_rule is None else (value - threshold) / (next_rule[0] - threshold)
+              return {"rank": level, "message": message, "progress": progress}
+          
+          
+          def trophy_rows(report):
+              metrics, profile = report["metrics"], report["profile_totals"]
+              definitions = [
+                  ("Commits", "Commits", metrics["commits"], f"{metrics['commits']} commits"),
+                  ("PullRequest", "Pull requests", metrics["prs"], f"{metrics['prs']} PRs"),
+                  ("Reviews", "Reviews", profile["reviews"], f"{profile['reviews']} revisões"),
+                  ("Repositories", "Repositórios", profile["owned_repositories"], f"{profile['owned_repositories']} repositórios"),
+                  ("Experience", "Experience", profile["account_age_days"] // 100, f"{profile['account_age_days'] // 100}pt"),
+                  ("Stars", "Estrelas", metrics["stars"], f"{metrics['stars']} estrelas"),
+              ]
+              rows = []
+              for category, title, value, bottom in definitions:
+                  row = {"category": category, "title": title, "score": value, "display_value": bottom,
+                         **trophy_condition(category, value)}
+                  row["display_message"] = row["message"]
+                  rows.append(row)
+              return rows
+          
+          
+          def render_trophies(report):
+              packed = base64.b64decode(TROPHY_ICON_DATA)
+              profile_require(hashlib.sha256(packed).hexdigest() == TROPHY_ICON_SHA256, "Os ícones dos troféus foram alterados.")
+              icons = json.loads(gzip.decompress(packed))
+              rows = trophy_rows(report)
+              root = ET.Element(profile_tag("svg"), {"width": "760", "height": "110", "viewBox": "0 0 760 110", "role": "img"})
+              ET.SubElement(root, profile_tag("title")).text = "Conquistas ilustrativas calculadas com os dados auditados do GitHub"
+              ET.SubElement(root, profile_tag("desc")).text = (
+                  "Commits únicos de autoria principal nas branches acessíveis; PRs visíveis ao token; revisões nos últimos 365 dias; "
+                  "repositórios próprios incluindo privados e forks; tempo desde a criação da conta; estrelas dos repositórios próprios. "
+                  "As letras são classificações do gerador, não avaliações profissionais nem conquistas oficiais. "
+                  "Consulta: " + report["consulted_at_utc"]
+              )
+              ET.SubElement(root, profile_tag("metadata")).text = TROPHY_SOURCE + "\n" + TROPHY_LICENSE
+              for index, row in enumerate(rows):
+                  panel = ET.SubElement(root, profile_tag("svg"), {"x": str(index * 130), "y": "0", "width": "110", "height": "110",
+                              "viewBox": "0 0 110 110", "data-trophy": row["category"]})
+                  # Subárvore original; as cores são as do tema algolia já utilizado.
+                  wrapper = ET.fromstring('<svg xmlns="http://www.w3.org/2000/svg">' + icons[row["rank"]] + '</svg>')
+                  for child in list(wrapper):
+                      panel.append(child)
+                  # Limita cada gradiente ao seu painel para evitar IDs duplicados.
+                  old = row["rank"]
+                  new = "trophy-" + row["category"] + "-gradient"
+                  for node in panel.iter():
+                      if node.get("id") == old:
+                          node.set("id", new)
+                      if node.get("fill") == "url(#" + old + ")":
+                          node.set("fill", "url(#" + new + ")")
+                  font = {"text-anchor": "middle", "font-family": "Segoe UI,Helvetica,Arial,sans-serif", "font-weight": "bold"}
+                  ET.SubElement(panel, profile_tag("text"), dict(font, x="55", y="18", fill="#00aeff", **{"font-size": "13"})).text = row["title"]
+                  ET.SubElement(panel, profile_tag("text"), dict(font, x="55", y="85", fill="#7eace9", **{"font-size": "10.5"})).text = row["display_message"]
+                  ET.SubElement(panel, profile_tag("text"), dict(font, x="55", y="97", fill="#7eace9", **{"font-size": "10", "data-testid": "trophy-value"})).text = row["display_value"]
+                  ET.SubElement(panel, profile_tag("rect"), {"x": "15", "y": "101", "width": "80", "height": "3.2", "rx": "1", "fill": "#00aeff", "opacity": "0.3"})
+                  ET.SubElement(panel, profile_tag("rect"), {"x": "15", "y": "101", "width": str(80 * row["progress"]), "height": "3.2", "rx": "1", "fill": "#00aeff", "data-testid": "trophy-progress"})
+                  ET.SubElement(panel, profile_tag("title")).text = row["title"] + ": " + row["display_value"] + ". Classificação " + row["rank"]
+              return root, rows
+          
+          
+          def badge(label, value, color, icon=None):
+              # Texto normal (não textLength): proporções estáveis e leitura legível.
+              label_width = round(len(label) * 7.2 + (48 if icon else 22))
+              value_width = round(len(str(value)) * 7.2 + 24)
+              width = label_width + value_width
+              root = ET.Element(profile_tag("svg"), {"width": str(width), "height": "28", "viewBox": f"0 0 {width} 28", "role": "img"})
+              ET.SubElement(root, profile_tag("title")).text = f"{label}: {value}"
+              ET.SubElement(root, profile_tag("rect"), {"width": str(label_width), "height": "28", "fill": "#30363d"})
+              ET.SubElement(root, profile_tag("rect"), {"x": str(label_width), "width": str(value_width), "height": "28", "fill": color})
+              if icon == "star":
+                  ET.SubElement(root, profile_tag("path"), {"d": "M17 5l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.2-4.3 2.2.8-4.8-3.5-3.4 4.8-.7z", "fill": "white", "transform": "translate(-2,2) scale(.85)"})
+              if icon == "user":
+                  ET.SubElement(root, profile_tag("circle"), {"cx": "15", "cy": "10", "r": "3", "fill": "white"})
+                  ET.SubElement(root, profile_tag("path"), {"d": "M9 21v-3a6 6 0 0112 0v3z", "fill": "white"})
+              common = {"y": "18", "text-anchor": "middle", "font-family": "DejaVu Sans,Verdana,sans-serif", "font-size": "10", "font-weight": "bold", "fill": "white", "letter-spacing": "0.5"}
+              label_attrs = dict(common, x="34" if icon else str(label_width / 2))
+              if icon:
+                  label_attrs["text-anchor"] = "start"
+              ET.SubElement(root, profile_tag("text"), label_attrs).text = label
+              ET.SubElement(root, profile_tag("text"), dict(common, x=str(label_width + value_width / 2), **{"data-testid": "badge-value"})).text = str(value)
+              return root
+          
+          
+          def profile_assets(report):
+              trophies, rows = render_trophies(report)
+              profile = report["profile_totals"]
+              stamp = datetime.fromisoformat(report["validated_at_utc"]).astimezone(ZoneInfo("America/Sao_Paulo"))
+              updated = stamp.strftime("%d/%m/%Y %H:%M") + " BRT"
+              values = {
+                  "stars-badge.svg": ("ESTRELAS", report["metrics"]["stars"], "#488207", "star"),
+                  "followers-badge.svg": ("SEGUIDORES", profile["followers"], "#236ad3", "user"),
+                  "public-repos-badge.svg": ("REPOS PÚBLICOS", profile["public_repositories"], "#007ec6", None),
+                  "private-repos-badge.svg": ("REPOS PRIVADOS", profile["private_repositories"], "#6f42c1", None),
+                  "updated-badge.svg": ("ATUALIZADO", updated, "#238636", None),
+              }
+              roots = {"trophies.svg": trophies}
+              for filename, (label, value, color, icon) in values.items():
+                  roots[filename] = badge(label, value, color, icon)
+              report["profile_assets"] = {
+                  "trophy_source": TROPHY_SOURCE,
+                  "trophies": rows,
+                  "badges": {name: str(row[1]) for name, row in values.items()},
+                  "updated_timezone": "America/Sao_Paulo",
+                  "experience_rule": "floor(dias completos desde a criação da conta / 100), conforme o gerador original. Exibição em pontos inteiros, com sufixo pt; não mede experiência profissional nem anos de carreira.",
+                  "reviews_period": report["periods"]["reviews"],
+                  "views": "Komarev externo, separado desta auditoria; conta carregamentos, não visitantes únicos.",
+              }
+              validate_profile_assets(roots, report)
+              report["validation"]["profile_assets_match"] = True
+              return roots
+          
+          
+          def validate_profile_assets(roots, report):
+              # Conferência final do SVG com as fontes do relatório, sem confiar no texto renderizado.
+              metrics, totals = report["metrics"], report["profile_totals"]
+              expected = {"Commits": f"{metrics['commits']} commits", "PullRequest": f"{metrics['prs']} PRs",
+                          "Reviews": f"{totals['reviews']} revisões", "Repositories": f"{totals['owned_repositories']} repositórios",
+                          "Experience": f"{totals['account_age_days'] // 100}pt", "Stars": f"{metrics['stars']} estrelas"}
+              panels = [e for e in roots["trophies.svg"].iter() if e.get("data-trophy")]
+              profile_require(len(panels) == len(expected), "Troféu ausente ou duplicado.")
+              for panel in panels:
+                  name = panel.get("data-trophy")
+                  profile_require(name in expected, "Troféu desconhecido.")
+                  profile_require(profile_one(panel, "data-testid", "trophy-value").text == expected.pop(name), "Valor do troféu divergente.")
+              profile_require(not expected, "Troféus incompletos.")
+              for name, expected_value in report["profile_assets"]["badges"].items():
+                  profile_require(profile_one(roots[name], "data-testid", "badge-value").text == expected_value, "Badge divergente: " + name)
+              profile_require(totals["owned_repositories"] == totals["public_repositories"] + totals["private_repositories"], "Totais públicos e privados não fecham.")
+          
+          
+          
+          
           def main():
               started = datetime.now(timezone.utc)
               api = API()
@@ -487,6 +698,8 @@ jobs:
               owned = [r for r in repos.values() if r["owner"]["login"].lower() == USER]
               private_owned = sum(bool(r["private"]) for r in owned)
               require(private_owned == identity.get("owned_private_repos"), "Listagem incompleta de privados pessoais.")
+              public_owned = sum(not r["private"] for r in owned)
+              require(public_owned == identity.get("public_repos"), "Listagem incompleta de repositórios públicos próprios.")
               required = [n.strip() for n in os.environ.get("REQUIRED_PRIVATE_REPOS", "brasaliment/sistema-eventos").replace("\n", ",").split(",") if n.strip()]
               require(bool(required), "Lista obrigatória vazia.")
               for index, name in enumerate(required, 1):
@@ -541,7 +754,7 @@ jobs:
                          "issues": integer(profile["issues"]["totalCount"]), "stars": sum(integer(r["stargazers_count"]) for r in owned),
                          "contribs": integer(profile["repositoriesContributedTo"]["totalCount"])}
               report = {
-                  "schema_version": 6, "account": USER, "consulted_at_utc": started.isoformat(),
+                  "schema_version": 8, "account": USER, "consulted_at_utc": started.isoformat(),
                   "private_access": {"owned_private_repositories_checked": private_owned,
                                      "required_private_repositories_checked": len(required),
                                      "accessible_private_repositories": sum(bool(r["private"]) for r in repos.values())},
@@ -552,6 +765,14 @@ jobs:
                                "commits": "Histórico alcançável nas branches existentes, SHAs globais únicos, autor principal associado pelo GitHub a lucasitdias. Merge commits incluídos. Coautorias, autoria sem associação, tags isoladas, refs de PR apagadas e commits não enviados não são contados.",
                                "limitations": "Acesso validado para privados pessoais e lista obrigatória; não comprova inexistência de outros projetos inacessíveis. APIs são consultadas em momentos distintos, não em transação atômica."},
                   "metrics": metrics,
+                  "profile_totals": {
+                      "owned_repositories": len(owned), "public_repositories": public_owned,
+                      "private_repositories": private_owned,
+                      "followers": integer(profile["followers"]["totalCount"]),
+                      "reviews": integer(profile["contributionsCollection"]["totalPullRequestReviewContributions"]),
+                      "account_created_at": identity["created_at"],
+                      "account_age_days": integer(int((started - datetime.fromisoformat(identity["created_at"].replace("Z", "+00:00"))).total_seconds() // 86400)),
+                  },
                   "periods": {"commits": "Todo o histórico alcançável nas branches auditadas, sem filtro de data",
                               "prs_and_issues": "Histórico visível ao token, sem filtro de data",
                               "stars": "Estrelas dos repositórios próprios na consulta inicial",
@@ -580,6 +801,7 @@ jobs:
               report["api_requests"] = api.requests
               report["validation"] = {"metrics_svg_match": True, "languages_svg_match": True, "streak_svg_match": True,
                                       "streak_independent_calculation_match": True, "annual_daily_sums_match": True}
+              roots.update(profile_assets(report))
               for name, root in roots.items():
                   title = ET.SubElement(root, tag("title"))
                   title.text = "Consultado em " + started.isoformat() + ". Alcance em assets/stats/audit.json."
@@ -615,7 +837,7 @@ jobs:
         env:
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
         run: |
-          git add -- assets/stats/stats.svg assets/stats/top-langs.svg assets/stats/streak.svg assets/stats/audit.json
+          git add -- assets/stats
           if git diff --cached --quiet; then
             exit 0
           fi
