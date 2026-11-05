@@ -51,6 +51,7 @@ jobs:
 
           repos = []
           page = 1
+
           while len(repos) < limit:
               query = urlencode({
                   "type": "owner",
@@ -90,6 +91,7 @@ jobs:
           for index in range(0, len(repos), 2):
               pair = repos[index:index + 2]
               cells = []
+
               for offset, repo in enumerate(pair):
                   repo_name = repo["name"]
                   name = escape(repo_name, quote=True)
@@ -163,18 +165,6 @@ jobs:
                       '<text x="378" y="154" text-anchor="end"'
                       ' fill="#92a2b8" font-family="Arial, sans-serif"'
                       f' font-size="11">Estrelas {stars} · Forks {forks}</text>'
-                      '</svg>\n',
-                      encoding="utf-8",
-                  )
-                      '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="100"'
-                      ' viewBox="0 0 400 100">'
-                      '<rect x="1" y="1" width="398" height="98" rx="10"'
-                      ' fill="#0d1117" stroke="#30363d"/>'
-                      '<text x="20" y="39" fill="#7fff00"'
-                      ' font-family="monospace" font-size="17" font-weight="bold">'
-                      f'{short_name}</text>'
-                      '<text x="20" y="71" fill="#c9d1d9"'
-                      f' font-family="sans-serif" font-size="14">{language}</text>'
                       '</svg>\n',
                       encoding="utf-8",
                   )
