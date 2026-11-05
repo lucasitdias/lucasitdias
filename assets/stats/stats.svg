@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" width="467" height="195" viewBox="0 0 467 195" fill="none" role="img" aria-labelledby="descId">
-        <desc id="descId">{"commits": 495, "prs": 120, "issues": 1, "stars": 4, "contribs": 3} Rank B</desc>
+        <desc id="descId">{"commits": 496, "prs": 120, "issues": 1, "stars": 4, "contribs": 3} Rank B</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -108,10 +108,10 @@
           
     <g data-testid="rank-circle" transform="translate(390.5, 47.5)">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle" cx="-10" cy="8" r="40" style="animation:none;stroke-dashoffset:151.24551729153282" />
+        <circle class="rank-circle" cx="-10" cy="8" r="40" style="animation:none;stroke-dasharray:251.32741228718345;stroke-dashoffset:151.2249226747018;transform-origin:-10px 8px;transform:rotate(-90deg)" />
         <g class="rank-text">
           
-        <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="level-rank-icon">B</text>
+        <text x="-10" y="8" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="level-rank-icon">B</text>
       
         </g>
       </g>
@@ -134,7 +134,7 @@
     </svg>
   
       <text class="stat  bold" x="25" y="12.5">Commits nas branches:</text>
-      <text class="stat  bold" x="269.01" y="12.5" data-testid="commits">495</text>
+      <text class="stat  bold" x="269.01" y="12.5" data-testid="commits">496</text>
     </g>
   </g><g transform="translate(0, 50)">
     <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
@@ -163,11 +163,11 @@
       <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
     </svg>
   
-      <text class="stat  bold" x="25" y="12.5" style="font-size:12px">Repos. contribuídos:</text>
+      <text class="stat  bold" x="25" y="12.5">Repos. contribuídos:</text>
       <text class="stat  bold" x="269.01" y="12.5" data-testid="contribs">3</text>
     </g>
   </g>
     </svg>
   
         </g>
-      <style id="audit-static-style">.stagger,.header,.rank-text{opacity:1;animation:none}</style><title>Consultado em 2026-11-05T17:54:09.289718+00:00. Alcance em assets/stats/audit.json.</title></svg>
+      <style id="audit-static-style">.stagger,.header,.rank-text{opacity:1;animation:none}</style><title>Consultado em 2026-11-05T18:14:21.026507+00:00. Alcance em assets/stats/audit.json.</title></svg>

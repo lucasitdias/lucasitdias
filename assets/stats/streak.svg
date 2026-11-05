@@ -22,19 +22,19 @@
             <g style="isolation: isolate">
                 
                 <g transform="translate(82.5, 48)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="opacity: 1; opacity: 1;">714</text>
+                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="opacity: 1; opacity: 1;">715</text>
                 </g>
 
                 
                 <g transform="translate(82.5, 84)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="14px" font-style="normal" style="opacity: 1; opacity: 1;">
+                    <text x="0" y="56" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="14px" font-style="normal" style="opacity: 1; opacity: 1;">
                         Total de Contribuições
                     </text>
                 </g>
 
                 
                 <g transform="translate(82.5, 114)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="12px" font-style="normal" style="opacity: 1; opacity: 1;"><tspan x="0" dy="0">16/02/2024</tspan><tspan x="0" dy="16">até 05/11/2026</tspan></text>
+                    <text x="0" y="52" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">16/02/2024 – 05/11/2026</text>
                 </g>
             </g>
             <g style="isolation: isolate">
@@ -74,16 +74,16 @@
 
                 
                 <g transform="translate(412.5, 84)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="14px" font-style="normal" style="opacity: 1; opacity: 1;">
+                    <text x="0" y="56" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="14px" font-style="normal" style="opacity: 1; opacity: 1;">
                         Maior Sequência
                     </text>
                 </g>
 
                 
                 <g transform="translate(412.5, 114)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">03/05/2026 – 07/05/2026</text>
+                    <text x="0" y="52" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">03/05/2026 – 07/05/2026</text>
                 </g>
             </g>
             
         </g>
-    <desc>Dias do calendário do GitHub em UTC. Hoje sem contribuição preserva a sequência de ontem. Em empate, maior sequência mais antiga.</desc><title>Consultado em 2026-11-05T17:54:09.289718+00:00. Alcance em assets/stats/audit.json.</title></svg>
+    <desc>Dias do calendário do GitHub em UTC. Hoje sem contribuição preserva a sequência de ontem. Em empate, maior sequência mais antiga.</desc><title>Consultado em 2026-11-05T18:14:21.026507+00:00. Alcance em assets/stats/audit.json.</title></svg>
