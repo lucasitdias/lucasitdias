@@ -52,6 +52,7 @@ jobs:
           ET.register_namespace("", NS)
           ET.register_namespace("xlink", "http://www.w3.org/1999/xlink")
           USER = "lucasitdias"
+          LANGUAGE_WINDOW_DAYS = 180
           OUT = Path("assets/stats")
           API_VERSION = "2022-11-28"
           FORMULA = "https://github.com/stats-organization/github-readme-stats/blob/d79be7a9fd50ce38aef89306c8a1185fc0443bc7/src/calculateRank.js"
@@ -149,7 +150,7 @@ jobs:
               return {branch["name"]: branch["commit"]["sha"] for branch in branches}
           
           
-          def commit_set(api, repo, heads):
+          def commit_set(api, repo, heads, recent_from=None, recent_to=None, active_repos=None):
               # Consulta pelo SHA imutável, não por uma branch que pode avançar.
               seen = set()
               owned = set()
@@ -164,16 +165,23 @@ jobs:
                       author = commit.get("author")
                       if author and author.get("login", "").lower() == USER:
                           owned.add(sha)
+                          if recent_from is not None:
+                              value = commit.get("commit", {}).get("author", {}).get("date")
+                              require(isinstance(value, str), "Commit atribuído à conta sem data de autoria; publicação bloqueada.")
+                              timestamp = datetime.fromisoformat(value.replace("Z", "+00:00"))
+                              require(timestamp.tzinfo is not None, "Data de autoria sem fuso horário.")
+                              if recent_from <= timestamp <= recent_to:
+                                  active_repos.add(repo)
                       elif author is None:
                           unmatched.add(sha)
               return owned, seen, unmatched
           
           
-          def language_totals(api, repos):
+          def language_totals(api, repos, all_repositories=False):
               totals = Counter()
               checked = 0
               for repo in repos:
-                  if repo["owner"]["login"].lower() != USER or repo["fork"]:
+                  if not all_repositories and (repo["owner"]["login"].lower() != USER or repo["fork"]):
                       continue
                   data, _ = api.get("/repos/" + repo["full_name"] + "/languages")
                   require(isinstance(data, dict), "Resposta de linguagens inválida.")
@@ -181,6 +189,37 @@ jobs:
                       totals[name] += integer(size)
                   checked += 1
               return totals, checked
+          
+          
+          def language_totals_graphql(api, repos):
+              totals = Counter()
+              for repo in repos:
+                  owner, name = repo["full_name"].split("/", 1)
+                  cursor = None
+                  seen_cursors = set()
+                  seen_languages = set()
+                  while True:
+                      data = api.graphql("""query($owner:String!, $name:String!, $cursor:String) {
+                        repository(owner:$owner,name:$name) {
+                          languages(first:100,after:$cursor) {
+                            pageInfo {hasNextPage endCursor} edges {size node {name}}
+                          }
+                        }
+                      }""", {"owner": owner, "name": name, "cursor": cursor})
+                      require(data.get("repository") is not None, "Repositório selecionado não retornado pelo GraphQL.")
+                      languages = data["repository"]["languages"]
+                      for item in languages["edges"]:
+                          language = item["node"]["name"]
+                          require(language not in seen_languages, "Linguagem repetida na paginação GraphQL.")
+                          seen_languages.add(language)
+                          totals[language] += integer(item["size"])
+                      info = languages["pageInfo"]
+                      if not info["hasNextPage"]:
+                          break
+                      cursor = info["endCursor"]
+                      require(cursor and cursor not in seen_cursors, "Cursor de linguagens repetido ou inválido.")
+                      seen_cursors.add(cursor)
+              return totals
           
           
           def calendar(api, created_at, now):
@@ -339,7 +378,10 @@ jobs:
               ET.SubElement(mask, tag("rect"), {"x": "0", "y": "0", "width": "250", "height": "8", "fill": "white", "rx": "5"})
               selected = sorted(((n, b) for n, b in totals.items() if b > 0), key=lambda x: (-x[1], x[0]))[:8]
               denominator = sum(b for _, b in selected)
-              require(denominator > 0, "Nenhum byte de linguagem encontrado.")
+              if denominator == 0:
+                  node = ET.SubElement(container, tag("text"), {"x": "0", "y": "35", "class": "lang-name"})
+                  node.text = "Sem código detectado nos projetos do período."
+              one(root, "data-testid", "header").text = "Linguagens · 180 dias"
               rows = []
               x = 0.0
               for index, (name, size) in enumerate(selected):
@@ -356,7 +398,7 @@ jobs:
                   rows.append({"name": name, "bytes": size, "percentage": round(percentage, 2)})
               description = root.find(tag("desc"))
               require(description is not None, "Modelo de linguagens sem descrição.")
-              description.text = "Percentuais dos bytes das oito linguagens exibidas em repositórios próprios, sem forks. Não mede autoria individual."
+              description.text = "Bytes atuais das oito linguagens exibidas nos projetos acessíveis com commits de autoria principal associados a lucasitdias nos últimos 180 dias. Inclui projetos próprios e de outras contas, públicos, privados e forks. O código pode ter sido escrito pela equipe e fora desse período; não mede autoria individual."
               return rows
           
           
@@ -405,7 +447,7 @@ jobs:
               for node, (name, size) in zip(nodes, chosen):
                   require(node.text == f"{name} {100 * size / denominator:.2f}%", "Percentual de linguagem divergente.")
               bars = [e for e in roots["top-langs.svg"].iter() if e.get("data-testid") == "lang-progress"]
-              require(abs(sum(float(e.get("width")) for e in bars) - 250) < 1e-7, "Barra de linguagens divergente.")
+              require(abs(sum(float(e.get("width")) for e in bars) - (250 if denominator else 0)) < 1e-7, "Barra de linguagens divergente.")
               # Segunda implementação para conferir sequências e datas.
               runs = []
               begin = end = None
@@ -461,39 +503,22 @@ jobs:
               all_seen = set()
               unmatched = set()
               snapshots = {}
+              language_from = started - timedelta(days=LANGUAGE_WINDOW_DAYS)
+              active_repos = set()
               for index, (name, repo) in enumerate(sorted(repos.items()), 1):
                   heads = branch_snapshot(api, name)
                   snapshots[name] = heads
-                  own, seen, unknown = commit_set(api, name, heads)
+                  own, seen, unknown = commit_set(api, name, heads, language_from, started, active_repos)
                   commits.update(own)
                   all_seen.update(seen)
                   unmatched.update(unknown)
                   print(f"Repositório {index}/{len(repos)}: {len(heads)} branches verificadas.")
           
               # Dois caminhos de API para os bytes das linguagens.
-              totals, languages_checked = language_totals(api, list(repos.values()))
-              graph_totals = Counter()
-              cursor = None
-              graph_repo_count = 0
-              while True:
-                  data = api.graphql("""query($login:String!, $cursor:String) {
-                    user(login:$login) { repositories(first:100,after:$cursor,ownerAffiliations:OWNER,isFork:false) {
-                      pageInfo {hasNextPage endCursor} nodes { nameWithOwner languages(first:100) {
-                        pageInfo {hasNextPage} edges {size node {name}}
-                      } }
-                    } }
-                  }""", {"login": USER, "cursor": cursor})["user"]["repositories"]
-                  for repo in data["nodes"]:
-                      graph_repo_count += 1
-                      require(not repo["languages"]["pageInfo"]["hasNextPage"], "Um repositório tem mais de 100 linguagens. Resultado bloqueado.")
-                      for item in repo["languages"]["edges"]:
-                          graph_totals[item["node"]["name"]] += integer(item["size"])
-                  info = data["pageInfo"]
-                  if not info["hasNextPage"]:
-                      break
-                  require(info["endCursor"] and info["endCursor"] != cursor, "Cursor de linguagens inválido.")
-                  cursor = info["endCursor"]
-              require(graph_repo_count == languages_checked and graph_totals == totals, "Bytes de linguagens REST e GraphQL divergem. Execute novamente após estabilizar os dados.")
+              language_repos = [repos[name] for name in sorted(active_repos)]
+              totals, languages_checked = language_totals(api, language_repos, all_repositories=True)
+              graph_totals = language_totals_graphql(api, language_repos)
+              require(graph_totals == totals, "Bytes de linguagens REST e GraphQL divergem. Execute novamente após estabilizar os dados.")
           
               period_from = started - timedelta(days=365)
               profile = api.graphql("""query($login:String!, $from:DateTime!, $to:DateTime!) {
@@ -516,7 +541,7 @@ jobs:
                          "issues": integer(profile["issues"]["totalCount"]), "stars": sum(integer(r["stargazers_count"]) for r in owned),
                          "contribs": integer(profile["repositoriesContributedTo"]["totalCount"])}
               report = {
-                  "schema_version": 4, "account": USER, "consulted_at_utc": started.isoformat(),
+                  "schema_version": 6, "account": USER, "consulted_at_utc": started.isoformat(),
                   "private_access": {"owned_private_repositories_checked": private_owned,
                                      "required_private_repositories_checked": len(required),
                                      "accessible_private_repositories": sum(bool(r["private"]) for r in repos.values())},
@@ -534,7 +559,13 @@ jobs:
                               "reviews": {"from": period_from.isoformat(), "to": started.isoformat()},
                               "calendar": {"from": min(daily).isoformat(), "to": started.date().isoformat(), "timezone": "UTC"}},
                   "languages": {"repositories_checked": languages_checked, "bytes_by_language": dict(sorted(totals.items())),
-                                "rest_graphql_match": True, "scope": "Repositórios próprios públicos e privados, sem forks, bytes na branch padrão; não representa autoria individual. Top 8 normalizado sobre os bytes dessas 8 linguagens."},
+                                "window_days": LANGUAGE_WINDOW_DAYS, "activity_from": language_from.isoformat(), "activity_to": started.isoformat(),
+                                "owned_repositories": sum(r["owner"]["login"].lower() == USER for r in language_repos),
+                                "other_owners_repositories": sum(r["owner"]["login"].lower() != USER for r in language_repos),
+                                "private_repositories": sum(bool(r["private"]) for r in language_repos),
+                                "forks": sum(bool(r["fork"]) for r in language_repos),
+                                "rest_graphql_match": True,
+                                "scope": "Repositórios acessíveis com ao menos um commit de autor principal associado a lucasitdias, pela data de autoria dentro dos últimos 180 dias, em qualquer branch auditada. Inclui próprios, outras contas, públicos, privados, forks e arquivados. Cada repositório conta uma vez; forks podem compartilhar código. Bytes atuais da branch padrão, incluindo código da equipe e anterior ao período. Não mede linhas escritas por Lucas nem bytes modificados em 180 dias. Top 8 normalizado sobre os bytes dessas 8 linguagens."},
                   "streak": streak, "calendar_years": years,
                   "calendar_days": {day.isoformat(): count for day, count in sorted(daily.items())},
                   "rank_validation": rank(metrics, integer(profile["contributionsCollection"]["totalPullRequestReviewContributions"]), integer(profile["followers"]["totalCount"])),
