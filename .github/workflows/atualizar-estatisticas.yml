@@ -28,7 +28,7 @@ jobs:
           card: stats
           options: username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&hide_border=true&border_radius=12&locale=pt-br
           path: assets/stats/stats.svg
-          token: ${{ github.token }}
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
       - name: Gerar linguagens mais usadas
         uses: stats-organization/github-readme-stats-action@v1
