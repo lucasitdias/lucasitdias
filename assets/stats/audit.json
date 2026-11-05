@@ -1,0 +1,30 @@
+{
+  "consulted_at_utc": "2026-11-05T16:50:24.096243+00:00",
+  "account": "lucasitdias",
+  "private_access": {
+    "owned_private_repositories_checked": 4,
+    "required_private_repositories_checked": 1,
+    "accessible_private_repositories": 7
+  },
+  "metrics": {
+    "commits": 451,
+    "prs": 119,
+    "issues": 0,
+    "stars": 4,
+    "contribs": 3
+  },
+  "periods": {
+    "commits": "Busca author:lucasitdias, sem filtro de data, no índice visível ao token",
+    "prs_and_issues": "Histórico visível ao token, sem filtro de data",
+    "stars": "Estrelas atuais dos repositórios próprios visíveis ao token",
+    "contribution_calendar": {
+      "from": "2025-11-02T03:00:00Z",
+      "to": "2026-11-06T02:59:59Z",
+      "commits": 542,
+      "contributions": 682
+    },
+    "languages": "Bytes atuais dos repositórios próprios, públicos e privados, sem forks"
+  },
+  "coverage": "Privados pessoais comparados ao total informado pela API; repositórios de organizações conferidos pela lista obrigatória. A busca de commits depende da indexação do GitHub.",
+  "validated_at_utc": "2026-11-05T16:50:48.834648+00:00"
+}
