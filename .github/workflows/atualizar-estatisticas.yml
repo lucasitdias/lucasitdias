@@ -549,11 +549,16 @@ jobs:
               rules = TROPHY_RULES[category]
               reached = [rule for rule in rules if value >= rule[0]]
               if not reached:
-                  return {"rank": "?", "message": "Unknown", "progress": 0.0}
+                  goal = rules[0][0]
+                  return {"rank": "?", "message": "Unknown", "progress": value / goal,
+                          "next_threshold": goal, "level_progress": 0.0}
               threshold, level, message = reached[-1]
               next_rule = next((rule for rule in rules if rule[0] > value), None)
-              progress = 1.0 if next_rule is None else (value - threshold) / (next_rule[0] - threshold)
-              return {"rank": level, "message": message, "progress": progress}
+              level_progress = 1.0 if next_rule is None else (value - threshold) / (next_rule[0] - threshold)
+              progress = 1.0 if next_rule is None else value / next_rule[0]
+              return {"rank": level, "message": message, "progress": progress,
+                      "next_threshold": next_rule[0] if next_rule else None,
+                      "level_progress": level_progress}
           
           
           def trophy_rows(report):
@@ -586,6 +591,7 @@ jobs:
                   "Commits únicos de autoria principal nas branches acessíveis; PRs visíveis ao token; revisões nos últimos 365 dias; "
                   "repositórios próprios incluindo privados e forks; tempo desde a criação da conta; estrelas dos repositórios próprios. "
                   "As letras são classificações do gerador, não avaliações profissionais nem conquistas oficiais. "
+                  "Barras: valor atual dividido pela próxima meta absoluta da categoria; 100% no nível máximo. "
                   "Consulta: " + report["consulted_at_utc"]
               )
               ET.SubElement(root, profile_tag("metadata")).text = TROPHY_SOURCE + "\n" + TROPHY_LICENSE
@@ -609,7 +615,8 @@ jobs:
                   ET.SubElement(panel, profile_tag("text"), dict(font, x="55", y="85", fill="#7eace9", **{"font-size": "10.5"})).text = row["display_message"]
                   ET.SubElement(panel, profile_tag("text"), dict(font, x="55", y="97", fill="#7eace9", **{"font-size": "10", "data-testid": "trophy-value"})).text = row["display_value"]
                   ET.SubElement(panel, profile_tag("rect"), {"x": "15", "y": "101", "width": "80", "height": "3.2", "rx": "1", "fill": "#00aeff", "opacity": "0.3"})
-                  ET.SubElement(panel, profile_tag("rect"), {"x": "15", "y": "101", "width": str(80 * row["progress"]), "height": "3.2", "rx": "1", "fill": "#00aeff", "data-testid": "trophy-progress"})
+                  bar = ET.SubElement(panel, profile_tag("rect"), {"x": "15", "y": "101", "width": str(80 * row["progress"]), "height": "3.2", "rx": "1", "fill": "#00aeff", "data-testid": "trophy-progress"})
+                  ET.SubElement(bar, profile_tag("title")).text = (f"{row['score']} / {row['next_threshold']} = {row['progress'] * 100:.2f}% da próxima meta" if row["next_threshold"] else "Nível máximo: 100%")
                   ET.SubElement(panel, profile_tag("title")).text = row["title"] + ": " + row["display_value"] + ". Classificação " + row["rank"]
               return root, rows
           
@@ -659,6 +666,7 @@ jobs:
                   "updated_timezone": "America/Sao_Paulo",
                   "experience_rule": "floor(dias completos desde a criação da conta / 100), conforme o gerador original. Exibição em pontos inteiros, com sufixo pt; não mede experiência profissional nem anos de carreira.",
                   "reviews_period": report["periods"]["reviews"],
+                  "bars_rule": "Valor atual / próxima meta absoluta da categoria. No nível máximo, 100%. level_progress registra separadamente o avanço relativo entre níveis, preservando a referência do gerador original.",
                   "views": "Komarev externo, separado desta auditoria; conta carregamentos, não visitantes únicos.",
               }
               validate_profile_assets(roots, report)
@@ -678,6 +686,13 @@ jobs:
                   name = panel.get("data-trophy")
                   profile_require(name in expected, "Troféu desconhecido.")
                   profile_require(profile_one(panel, "data-testid", "trophy-value").text == expected.pop(name), "Valor do troféu divergente.")
+                  scores = {"Commits": metrics["commits"], "PullRequest": metrics["prs"], "Reviews": totals["reviews"],
+                            "Repositories": totals["owned_repositories"], "Experience": totals["account_age_days"] // 100, "Stars": metrics["stars"]}
+                  score = scores[name]
+                  next_goals = [rule[0] for rule in TROPHY_RULES[name] if rule[0] > score]
+                  expected_width = 80 * score / min(next_goals) if next_goals else 80
+                  actual_width = float(profile_one(panel, "data-testid", "trophy-progress").get("width"))
+                  profile_require(abs(actual_width - expected_width) < 1e-8, "Barra do troféu divergente: " + name)
               profile_require(not expected, "Troféus incompletos.")
               for name, expected_value in report["profile_assets"]["badges"].items():
                   profile_require(profile_one(roots[name], "data-testid", "badge-value").text == expected_value, "Badge divergente: " + name)
@@ -754,7 +769,7 @@ jobs:
                          "issues": integer(profile["issues"]["totalCount"]), "stars": sum(integer(r["stargazers_count"]) for r in owned),
                          "contribs": integer(profile["repositoriesContributedTo"]["totalCount"])}
               report = {
-                  "schema_version": 8, "account": USER, "consulted_at_utc": started.isoformat(),
+                  "schema_version": 9, "account": USER, "consulted_at_utc": started.isoformat(),
                   "private_access": {"owned_private_repositories_checked": private_owned,
                                      "required_private_repositories_checked": len(required),
                                      "accessible_private_repositories": sum(bool(r["private"]) for r in repos.values())},
