@@ -1,7 +1,7 @@
 {
-  "schema_version": 4,
+  "schema_version": 6,
   "account": "lucasitdias",
-  "consulted_at_utc": "2026-11-05T18:14:21.026507+00:00",
+  "consulted_at_utc": "2026-11-05T18:36:50.378743+00:00",
   "private_access": {
     "owned_private_repositories_checked": 4,
     "required_private_repositories_checked": 2,
@@ -10,7 +10,7 @@
   "coverage": {
     "repositories_checked": 21,
     "branches_checked": 31,
-    "unique_commit_objects_examined": 694,
+    "unique_commit_objects_examined": 699,
     "unassociated_author_objects": 7,
     "empty_repositories": 1,
     "branch_heads_unchanged": true,
@@ -19,8 +19,8 @@
     "limitations": "Acesso validado para privados pessoais e lista obrigatória; não comprova inexistência de outros projetos inacessíveis. APIs são consultadas em momentos distintos, não em transação atômica."
   },
   "metrics": {
-    "commits": 496,
-    "prs": 120,
+    "commits": 500,
+    "prs": 121,
     "issues": 1,
     "stars": 4,
     "contribs": 3
@@ -31,8 +31,8 @@
     "stars": "Estrelas dos repositórios próprios na consulta inicial",
     "contributed_repositories": "Semântica de repositoriesContributedTo do GitHub (último ano), não a contagem dos repositórios do inventário",
     "reviews": {
-      "from": "2025-11-05T18:14:21.026507+00:00",
-      "to": "2026-11-05T18:14:21.026507+00:00"
+      "from": "2025-11-05T18:36:50.378743+00:00",
+      "to": "2026-11-05T18:36:50.378743+00:00"
     },
     "calendar": {
       "from": "2024-02-16",
@@ -41,67 +41,71 @@
     }
   },
   "languages": {
-    "repositories_checked": 16,
+    "repositories_checked": 10,
     "bytes_by_language": {
-      "C": 38360,
-      "CMake": 6750,
-      "CSS": 41098,
-      "Dockerfile": 1524,
-      "HTML": 163590,
+      "CSS": 207838,
+      "Dockerfile": 8314,
+      "HTML": 765709,
       "Inno Setup": 3470,
-      "Java": 278781,
-      "JavaScript": 160046,
-      "Makefile": 246,
-      "Python": 266982,
-      "TypeScript": 750773
+      "JavaScript": 438629,
+      "PLpgSQL": 88230,
+      "Python": 350703,
+      "TypeScript": 2969907
     },
+    "window_days": 180,
+    "activity_from": "2026-05-09T18:36:50.378743+00:00",
+    "activity_to": "2026-11-05T18:36:50.378743+00:00",
+    "owned_repositories": 8,
+    "other_owners_repositories": 2,
+    "private_repositories": 5,
+    "forks": 0,
     "rest_graphql_match": true,
-    "scope": "Repositórios próprios públicos e privados, sem forks, bytes na branch padrão; não representa autoria individual. Top 8 normalizado sobre os bytes dessas 8 linguagens.",
+    "scope": "Repositórios acessíveis com ao menos um commit de autor principal associado a lucasitdias, pela data de autoria dentro dos últimos 180 dias, em qualquer branch auditada. Inclui próprios, outras contas, públicos, privados, forks e arquivados. Cada repositório conta uma vez; forks podem compartilhar código. Bytes atuais da branch padrão, incluindo código da equipe e anterior ao período. Não mede linhas escritas por Lucas nem bytes modificados em 180 dias. Top 8 normalizado sobre os bytes dessas 8 linguagens.",
     "displayed": [
       {
         "name": "TypeScript",
-        "bytes": 750773,
-        "percentage": 44.0
-      },
-      {
-        "name": "Java",
-        "bytes": 278781,
-        "percentage": 16.34
-      },
-      {
-        "name": "Python",
-        "bytes": 266982,
-        "percentage": 15.65
+        "bytes": 2969907,
+        "percentage": 61.45
       },
       {
         "name": "HTML",
-        "bytes": 163590,
-        "percentage": 9.59
+        "bytes": 765709,
+        "percentage": 15.84
       },
       {
         "name": "JavaScript",
-        "bytes": 160046,
-        "percentage": 9.38
+        "bytes": 438629,
+        "percentage": 9.08
+      },
+      {
+        "name": "Python",
+        "bytes": 350703,
+        "percentage": 7.26
       },
       {
         "name": "CSS",
-        "bytes": 41098,
-        "percentage": 2.41
+        "bytes": 207838,
+        "percentage": 4.3
       },
       {
-        "name": "C",
-        "bytes": 38360,
-        "percentage": 2.25
+        "name": "PLpgSQL",
+        "bytes": 88230,
+        "percentage": 1.83
       },
       {
-        "name": "CMake",
-        "bytes": 6750,
-        "percentage": 0.4
+        "name": "Dockerfile",
+        "bytes": 8314,
+        "percentage": 0.17
+      },
+      {
+        "name": "Inno Setup",
+        "bytes": 3470,
+        "percentage": 0.07
       }
     ]
   },
   "streak": {
-    "total": 715,
+    "total": 717,
     "first_activity": "2024-02-16",
     "current": 2,
     "current_from": "2026-11-04",
@@ -127,7 +131,7 @@
       "year": 2026,
       "from": "2026-01-01",
       "to": "2026-11-05",
-      "total": 690
+      "total": 692
     }
   ],
   "calendar_days": {
@@ -1124,14 +1128,14 @@
     "2026-11-02": 1,
     "2026-11-03": 0,
     "2026-11-04": 9,
-    "2026-11-05": 18
+    "2026-11-05": 20
   },
   "rank_validation": {
     "level": "B",
-    "formula_score": 60.17048490592109,
+    "formula_score": 60.07255392667392,
     "inputs": {
-      "commits": 496,
-      "prs": 120,
+      "commits": 500,
+      "prs": 121,
       "issues": 1,
       "stars": 4,
       "contribs": 3,
@@ -1141,8 +1145,8 @@
     "formula_source": "https://github.com/stats-organization/github-readme-stats/blob/d79be7a9fd50ce38aef89306c8a1185fc0443bc7/src/calculateRank.js",
     "note": "Fórmula do gerador com commits únicos das branches auditadas; não é nota oficial do GitHub nem avaliação profissional."
   },
-  "validated_at_utc": "2026-11-05T18:14:57.498013+00:00",
-  "api_requests": 102,
+  "validated_at_utc": "2026-11-05T18:37:17.578137+00:00",
+  "api_requests": 105,
   "validation": {
     "metrics_svg_match": true,
     "languages_svg_match": true,
