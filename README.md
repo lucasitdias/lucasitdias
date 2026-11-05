@@ -15,25 +15,44 @@ IT Support | Infrastructure | Systems Implementation | Cloud Computing
   <img src="https://raw.githubusercontent.com/lucasitdias/lucasitdias/main/programador .png" width="160">
 </p>
 
-<h3 align="center"> 🏆 Conquistas no GitHub</h3>
+<h3 align="center">🏆 Conquistas no GitHub</h3>
 
 <p align="center">
-<img src="https://github-profile-trophy-eight.vercel.app/?username=lucasitdias&theme=algolia&no-frame=true&no-bg=true&row=1&column=6&margin-w=20"/>
+  <a href="./assets/stats/audit.json">
+    <img src="./assets/stats/trophies.svg" width="760" alt="Troféus calculados com os dados auditados do GitHub" />
+  </a>
 </p>
 
 <p align="center">
-<img src="https://komarev.com/ghpvc/?username=lucasitdias&color=blue&style=for-the-badge&label=VISUALIZAÇÕES"/>&nbsp;
-<a href="https://github.com/lucasitdias?tab=repositories&sort=stargazers">
-<img alt="Total de estrelas" title="Total de estrelas GitHub"
-src="https://custom-icon-badges.demolab.com/github/stars/lucasitdias?color=55960c&style=for-the-badge&labelColor=488207&logo=star&label=ESTRELAS"/>
-</a>&nbsp;
-<a href="https://github.com/lucasitdias?tab=followers">
-<img alt="Seguidores" title="Me siga no GitHub"
-src="https://custom-icon-badges.demolab.com/github/followers/lucasitdias?color=236ad3&labelColor=1155ba&style=for-the-badge&logo=github&label=SEGUIDORES&logoColor=white"/>
-</a>
+  <img src="https://komarev.com/ghpvc/?username=lucasitdias&amp;color=blue&amp;style=for-the-badge&amp;label=VISUALIZA%C3%87%C3%95ES" alt="Visualizações do perfil" title="Contador de carregamentos fornecido pelo Komarev" />
+  &nbsp;
+  <a href="https://github.com/lucasitdias?tab=repositories&amp;sort=stargazers">
+    <img src="./assets/stats/stars-badge.svg" alt="Estrelas dos repositórios próprios" />
+  </a>
+  &nbsp;
+  <a href="https://github.com/lucasitdias?tab=followers">
+    <img src="./assets/stats/followers-badge.svg" alt="Seguidores no GitHub" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/lucasitdias?tab=repositories">
+    <img src="./assets/stats/public-repos-badge.svg" alt="Total de repositórios próprios públicos" title="Repositórios próprios públicos, incluindo forks" />
+  </a>
+  &nbsp;
+  <a href="./assets/stats/audit.json">
+    <img src="./assets/stats/private-repos-badge.svg" alt="Total agregado de repositórios próprios privados" title="Repositórios próprios privados; nomes e conteúdo não são publicados" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="./assets/stats/audit.json">
+    <img src="./assets/stats/updated-badge.svg" alt="Data e hora da última atualização validada, no horário de Brasília" />
+  </a>
 </p>
 
 ---
+
 
 <h2 align="center"> 👨🏼‍💻 Sobre mim</h2>
 
