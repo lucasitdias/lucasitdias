@@ -119,6 +119,12 @@ jobs:
           query = """
           query($login: String!) {
             user(login: $login) {
+              followers { totalCount }
+              reviews: contributionsCollection {
+                totalPullRequestReviewContributions
+                startedAt
+                endedAt
+              }
               pullRequests(first: 1) { totalCount }
               issues { totalCount }
               repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
@@ -182,6 +188,13 @@ jobs:
                   },
                   "languages": "Bytes atuais dos repositórios próprios, públicos e privados, sem forks",
               },
+              "rank_inputs": {
+                  "all_commits": True,
+                  "reviews": data["reviews"]["totalPullRequestReviewContributions"],
+                  "followers": data["followers"]["totalCount"],
+                  "reviews_from": data["reviews"]["startedAt"],
+                  "reviews_to": data["reviews"]["endedAt"],
+              },
               "coverage": (
                   "Privados pessoais comparados ao total informado pela API; "
                   "repositórios de organizações conferidos pela lista obrigatória. "
@@ -193,7 +206,7 @@ jobs:
           PY
 
       - name: Gerar estatísticas gerais
-        uses: stats-organization/github-readme-stats-action@v1
+        uses: stats-organization/github-readme-stats-action@d82657a0e215a28ec48bfc9b3987999a279f93be
         with:
           card: stats
           options: username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&number_format=long&hide_border=true&border_radius=12&locale=pt-br
@@ -201,7 +214,7 @@ jobs:
           token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
       - name: Gerar linguagens mais usadas
-        uses: stats-organization/github-readme-stats-action@v1
+        uses: stats-organization/github-readme-stats-action@d82657a0e215a28ec48bfc9b3987999a279f93be
         with:
           card: top-langs
           options: username=lucasitdias&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&border_radius=12&locale=pt-br
@@ -228,6 +241,33 @@ jobs:
           from pathlib import Path
           from urllib.parse import urlencode
           from urllib.request import Request, urlopen
+          
+          
+          def calculate_rank(metrics, rank_inputs):
+              inputs = {
+                  "commits": metrics["commits"],
+                  "prs": metrics["prs"],
+                  "issues": metrics["issues"],
+                  "stars": metrics["stars"],
+                  "reviews": rank_inputs["reviews"],
+                  "followers": rank_inputs["followers"],
+              }
+              if any(type(value) is not int or value < 0 for value in inputs.values()):
+                  raise SystemExit("Dados inválidos para recalcular o rank.")
+              commit_median = 1000 if rank_inputs["all_commits"] else 250
+              weighted = (
+                  2 * (1 - 2 ** (-inputs["commits"] / commit_median))
+                  + 3 * (1 - 2 ** (-inputs["prs"] / 50))
+                  + (1 - 2 ** (-inputs["issues"] / 25))
+                  + (1 - 2 ** (-inputs["reviews"] / 2))
+                  + 4 * inputs["stars"] / (inputs["stars"] + 50)
+                  + inputs["followers"] / (inputs["followers"] + 10)
+              )
+              score = (1 - weighted / 12) * 100
+              thresholds = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100]
+              levels = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"]
+              level = next(level for limit, level in zip(thresholds, levels) if score <= limit)
+              return {"level": level, "formula_score": score, "inputs": inputs}
           
           audit = json.loads(Path(".stats-audit.json").read_text(encoding="utf-8"))
           error_markers = (
@@ -296,11 +336,34 @@ jobs:
                       "Publicação bloqueada; investigue a consulta e o período antes de aceitar os dados."
                   )
           
+          rank = calculate_rank(audit["metrics"], audit["rank_inputs"])
+          rank_elements = [
+              element for element in roots["stats.svg"].iter()
+              if element.get("data-testid") == "level-rank-icon"
+          ]
+          if len(rank_elements) != 1:
+              raise SystemExit("O rank não pôde ser identificado no SVG.")
+          displayed_rank = "".join(rank_elements[0].itertext()).strip()
+          print(f"Conferência rank: recalculado={rank['level']}; painel={displayed_rank}.")
+          if displayed_rank != rank["level"]:
+              raise SystemExit("O rank do painel divergiu do recálculo; publicação bloqueada.")
+          rank["formula_source"] = (
+              "https://github.com/stats-organization/github-readme-stats/blob/"
+              "d79be7a9fd50ce38aef89306c8a1185fc0443bc7/src/calculateRank.js"
+          )
+          audit["rank_validation"] = rank
+          
+          stats_path = Path("assets/stats/stats.svg")
+          stats_text = stats_path.read_text(encoding="utf-8")
+          stats_text = re.sub(r"Total de Commits\s*:", "Commits indexados:", stats_text)
+          stats_path.write_text(stats_text, encoding="utf-8")
+          
           audit["validated_at_utc"] = datetime.now(timezone.utc).isoformat()
           Path("assets/stats/audit.json").write_text(
               json.dumps(audit, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
           )
           print("Os cinco totais do painel coincidem com a consulta autenticada de auditoria.")
+          print("A letra do rank coincide com a fórmula da versão fixada do gerador.")
           print("A validação dos painéis de linguagens e sequência confere formato e mensagens de erro.")
           PY
 
