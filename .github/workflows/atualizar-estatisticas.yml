@@ -1,0 +1,78 @@
+name: Atualizar estatísticas do perfil
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '43 12 * * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cards-do-perfil
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório do perfil
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Gerar estatísticas gerais
+        uses: stats-organization/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=lucasitdias&show_icons=true&theme=highcontrast&include_all_commits=true&hide_border=true&border_radius=12&locale=pt-br
+          path: assets/stats/stats.svg
+          token: ${{ github.token }}
+
+      - name: Gerar linguagens mais usadas
+        uses: stats-organization/github-readme-stats-action@v1
+        with:
+          card: top-langs
+          options: username=lucasitdias&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&border_radius=12&locale=pt-br
+          path: assets/stats/top-langs.svg
+          token: ${{ github.token }}
+
+      - name: Gerar sequência de contribuições
+        uses: DenverCoder1/github-readme-streak-stats@v1
+        with:
+          options: user=lucasitdias&theme=highcontrast&hide_border=true&border_radius=12&locale=pt_BR&disable_animations=true
+          path: assets/stats/streak.svg
+          token: ${{ github.token }}
+
+      - name: Conferir os arquivos gerados
+        run: |
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+
+          for name in ("stats.svg", "top-langs.svg", "streak.svg"):
+              path = Path("assets/stats") / name
+              root = ET.parse(path).getroot()
+              if root.tag != "{http://www.w3.org/2000/svg}svg":
+                  raise SystemExit(f"Arquivo SVG inválido: {path}")
+              if path.stat().st_size == 0:
+                  raise SystemExit(f"Arquivo vazio: {path}")
+              print(f"Conferido: {path}")
+          PY
+
+      - name: Publicar as estatísticas
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          git add -- assets/stats
+
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: atualiza estatísticas do perfil"
+          git pull --rebase origin "$DEFAULT_BRANCH"
+          git push origin "HEAD:refs/heads/$DEFAULT_BRANCH"
