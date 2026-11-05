@@ -305,12 +305,20 @@ jobs:
                       texts = [e for e in parent if e.tag == tag("text") and e is not node]
                       require(len(texts) == 1, "Rótulo não identificado.")
                       texts[0].text = "Commits nas branches:" if name == "commits" else "Repos. contribuídos:"
-                      if name == "contribs":
-                          texts[0].set("style", "font-size:12px")
-              set_text(one(root, "data-testid", "level-rank-icon"), report["rank_validation"]["level"])
+                      texts[0].attrib.pop("style", None)
+              rank_group = one(root, "data-testid", "rank-circle")
+              rank_group.attrib.pop("display", None)
+              rank_group.attrib.pop("style", None)
+              rank_text = one(root, "data-testid", "level-rank-icon")
+              set_text(rank_text, report["rank_validation"]["level"])
+              rank_text.set("x", "-10")
+              rank_text.set("y", "8")
+              rank_text.set("text-anchor", "middle")
+              rank_text.set("dominant-baseline", "central")
               for e in root.iter(tag("circle")):
                   if e.get("class") == "rank-circle":
-                      e.set("style", f"animation:none;stroke-dashoffset:{2 * math.pi * 40 * report['rank_validation']['formula_score'] / 100}")
+                      circumference = 2 * math.pi * 40
+                      e.set("style", f"animation:none;stroke-dasharray:{circumference};stroke-dashoffset:{circumference * report['rank_validation']['formula_score'] / 100};transform-origin:-10px 8px;transform:rotate(-90deg)")
               desc = root.find(tag("desc"))
               require(desc is not None, "Descrição acessível ausente.")
               set_text(desc, json.dumps(report["metrics"], ensure_ascii=False) + " Rank " + report["rank_validation"]["level"])
@@ -360,6 +368,8 @@ jobs:
           
           
           def draw_streak(root, data, now):
+              for transform in ("translate(82.5, 84)", "translate(412.5, 84)"):
+                  streak_node(root, transform).set("y", "56")
               values = {
                   "translate(82.5, 48)": data["total"],
                   "translate(247.5, 48)": data["current"],
@@ -370,12 +380,16 @@ jobs:
               for transform, value in values.items():
                   node = streak_node(root, transform)
                   set_text(node, value)
-                  if " – " in str(value):
+                  if " – " in str(value) or value == "Sem sequência":
                       node.set("font-size", "10px")
+                      node.set("y", "32")
+              # As três datas usam a mesma linha de base, fonte e formato.
+              for transform in ("translate(82.5, 114)", "translate(247.5, 145)", "translate(412.5, 114)"):
+                  node = streak_node(root, transform)
+                  node.set("y", "52" if transform != "translate(247.5, 145)" else "21")
+                  node.set("font-size", "10px")
               node = streak_node(root, "translate(82.5, 114)")
-              set_text(node, "")
-              for offset, text in [("0", date_br(data["first_activity"])), ("16", "até " + now.strftime("%d/%m/%Y"))]:
-                  ET.SubElement(node, tag("tspan"), {"x": "0", "dy": offset}).text = text
+              set_text(node, date_range(data["first_activity"], now.date().isoformat()))
               ET.SubElement(root, tag("desc")).text = "Dias do calendário do GitHub em UTC. Hoje sem contribuição preserva a sequência de ontem. Em empate, maior sequência mais antiga."
           
           
@@ -416,6 +430,7 @@ jobs:
                   require(int(streak_node(roots["streak.svg"], transform).text) == expected, "Número da sequência divergente no SVG.")
               require(streak_node(roots["streak.svg"], "translate(247.5, 145)").text == date_range(data["current_from"], data["current_to"]), "Data atual divergente no SVG.")
               require(streak_node(roots["streak.svg"], "translate(412.5, 114)").text == date_range(data["longest_from"], data["longest_to"]), "Data histórica divergente no SVG.")
+              require(streak_node(roots["streak.svg"], "translate(82.5, 114)").text == date_range(data["first_activity"], today.isoformat()), "Intervalo total divergente no SVG.")
           
           
           def main():
