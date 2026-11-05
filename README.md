@@ -309,12 +309,12 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
   <tr>
     <td align="center">
       <img height="200em"
-        src="https://stats-github-readme.vercel.app/api?username=lucasitdias&amp;show_icons=true&amp;theme=highcontrast&amp;include_all_commits=true&amp;count_private=true&amp;hide_border=true&amp;border_radius=12&amp;locale=pt-br"
+        src="./assets/stats/stats.svg"
         alt="Estatísticas do GitHub" />
     </td>
     <td align="center">
       <img height="200em"
-        src="https://stats-github-readme.vercel.app/api/top-langs/?username=lucasitdias&amp;layout=compact&amp;langs_count=8&amp;theme=chartreuse-dark&amp;hide_border=true&amp;border_radius=12&amp;locale=pt-br"
+        src="./assets/stats/top-langs.svg"
         alt="Linguagens mais usadas" />
     </td>
   </tr>
@@ -322,7 +322,7 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
 
 <p align="center">
   <img height="200em"
-    src="https://streak-stats.demolab.com?user=lucasitdias&amp;theme=highcontrast&amp;hide_border=true&amp;border_radius=12&amp;locale=pt_BR"
+    src="./assets/stats/streak.svg"
     alt="Sequência de contribuições" />
 </p>
 
