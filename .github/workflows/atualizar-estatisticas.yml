@@ -36,14 +36,14 @@ jobs:
           card: top-langs
           options: username=lucasitdias&layout=compact&langs_count=8&theme=chartreuse-dark&hide_border=true&border_radius=12&locale=pt-br
           path: assets/stats/top-langs.svg
-          token: ${{ github.token }}
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
       - name: Gerar sequência de contribuições
         uses: DenverCoder1/github-readme-streak-stats@v1
         with:
           options: user=lucasitdias&theme=highcontrast&hide_border=true&border_radius=12&locale=pt_BR&disable_animations=true
           path: assets/stats/streak.svg
-          token: ${{ github.token }}
+          token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
       - name: Conferir os arquivos gerados
         run: |
