@@ -1,15 +1,6 @@
-
-      <svg
-        width="300"
-        height="190"
-        viewBox="0 0 300 190"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-labelledby="descId"
-      >
-        <title id="titleId"></title>
-        <desc id="descId"></desc>
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="190" viewBox="0 0 300 190" fill="none" role="img" aria-labelledby="descId">
+        <desc id="descId">Percentuais dos bytes das oito linguagens exibidas em repositórios próprios, sem forks. Não mede autoria individual.</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -85,189 +76,17 @@
 
         
 
-        <rect
-          data-testid="card-bg"
-          x="0.5"
-          y="0.5"
-          rx="12"
-          height="99%"
-          stroke="#e4e2e2"
-          width="299"
-          fill="#000"
-          stroke-opacity="0"
-        />
+        <rect data-testid="card-bg" x="0.5" y="0.5" rx="12" height="99%" stroke="#e4e2e2" width="299" fill="#000" stroke-opacity="0" />
 
         
-      <g
-        data-testid="card-title"
-        transform="translate(25, 35)"
-      >
+      <g data-testid="card-title" transform="translate(25, 35)">
         <g transform="translate(0, 0)">
-      <text
-        x="0"
-        y="0"
-        class="header"
-        data-testid="header"
-      >Linguagens mais usadas</text>
+      <text x="0" y="0" class="header" data-testid="header">Linguagens mais usadas</text>
     </g>
       </g>
     
 
-        <g
-          data-testid="main-card-body"
-          transform="translate(0, 55)"
-        >
+        <g data-testid="main-card-body" transform="translate(0, 55)">
           
-    <svg data-testid="lang-items" x="25">
-      
-  
-      <mask id="rect-mask">
-          <rect x="0" y="0" width="250" height="8" fill="white" rx="5"/>
-        </mask>
-        
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="0"
-          y="0"
-          width="109.99"
-          height="8"
-          fill="#3178c6"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="109.99"
-          y="0"
-          width="40.84"
-          height="8"
-          fill="#b07219"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="150.82999999999998"
-          y="0"
-          width="39.12"
-          height="8"
-          fill="#3572A5"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="189.95"
-          y="0"
-          width="23.97"
-          height="8"
-          fill="#e34c26"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="213.92"
-          y="0"
-          width="23.45"
-          height="8"
-          fill="#f1e05a"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="237.36999999999998"
-          y="0"
-          width="16.02"
-          height="8"
-          fill="#663399"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="243.39"
-          y="0"
-          width="15.620000000000001"
-          height="8"
-          fill="#555555"
-        />
-      
-        <rect
-          mask="url(#rect-mask)"
-          data-testid="lang-progress"
-          x="249.01"
-          y="0"
-          width="10.99"
-          height="8"
-          fill="#DA3434"
-        />
-      
-      
-    <g transform="translate(0, 25)">
-      <g transform="translate(0, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#3178c6" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        TypeScript 44.00%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#b07219" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Java 16.34%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#3572A5" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        Python 15.65%
-      </text>
-    </g>
-  </g><g transform="translate(0, 75)">
-    <g class="stagger" style="animation-delay: 900ms">
-      <circle cx="5" cy="6" r="5" fill="#e34c26" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        HTML 9.59%
-      </text>
-    </g>
-  </g></g><g transform="translate(150, 0)"><g transform="translate(0, 0)">
-    <g class="stagger" style="animation-delay: 450ms">
-      <circle cx="5" cy="6" r="5" fill="#f1e05a" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        JavaScript 9.38%
-      </text>
-    </g>
-  </g><g transform="translate(0, 25)">
-    <g class="stagger" style="animation-delay: 600ms">
-      <circle cx="5" cy="6" r="5" fill="#663399" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        CSS 2.41%
-      </text>
-    </g>
-  </g><g transform="translate(0, 50)">
-    <g class="stagger" style="animation-delay: 750ms">
-      <circle cx="5" cy="6" r="5" fill="#555555" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        C 2.25%
-      </text>
-    </g>
-  </g><g transform="translate(0, 75)">
-    <g class="stagger" style="animation-delay: 900ms">
-      <circle cx="5" cy="6" r="5" fill="#DA3434" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        CMake 0.40%
-      </text>
-    </g>
-  </g></g>
-    </g>
-  
-    </svg>
-  
-        </g>
-      </svg>
-    
+    <svg data-testid="lang-items" x="25"><mask id="rect-mask"><rect x="0" y="0" width="250" height="8" fill="white" rx="5" /></mask><rect data-testid="lang-progress" mask="url(#rect-mask)" x="0.0" y="0" width="109.99498939274956" height="8" fill="#3178c6" /><g transform="translate(0,25)"><circle cx="5" cy="6" r="5" fill="#3178c6" /><text data-testid="lang-name" data-language="TypeScript" x="15" y="10" class="lang-name">TypeScript 44.00%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="109.99498939274956" y="0" width="40.84392104923874" height="8" fill="#b07219" /><g transform="translate(0,50)"><circle cx="5" cy="6" r="5" fill="#b07219" /><text data-testid="lang-name" data-language="Java" x="15" y="10" class="lang-name">Java 16.34%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="150.8389104419883" y="0" width="39.11526154783812" height="8" fill="#3572A5" /><g transform="translate(0,75)"><circle cx="5" cy="6" r="5" fill="#3572A5" /><text data-testid="lang-name" data-language="Python" x="15" y="10" class="lang-name">Python 15.65%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="189.95417198982642" y="0" width="23.967404681255054" height="8" fill="#e34c26" /><g transform="translate(0,100)"><circle cx="5" cy="6" r="5" fill="#e34c26" /><text data-testid="lang-name" data-language="HTML" x="15" y="10" class="lang-name">HTML 9.59%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="213.92157667108148" y="0" width="23.448176842203964" height="8" fill="#f1e05a" /><g transform="translate(150,25)"><circle cx="5" cy="6" r="5" fill="#f1e05a" /><text data-testid="lang-name" data-language="JavaScript" x="15" y="10" class="lang-name">JavaScript 9.38%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="237.36975351328545" y="0" width="6.021226221591908" height="8" fill="#663399" /><g transform="translate(150,50)"><circle cx="5" cy="6" r="5" fill="#663399" /><text data-testid="lang-name" data-language="CSS" x="15" y="10" class="lang-name">CSS 2.41%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="243.39097973487736" y="0" width="5.620084623589118" height="8" fill="#555555" /><g transform="translate(150,75)"><circle cx="5" cy="6" r="5" fill="#555555" /><text data-testid="lang-name" data-language="C" x="15" y="10" class="lang-name">C 2.25%</text></g><rect data-testid="lang-progress" mask="url(#rect-mask)" x="249.01106435846648" y="0" width="0.9889356415335389" height="8" fill="#DA3434" /><g transform="translate(150,100)"><circle cx="5" cy="6" r="5" fill="#DA3434" /><text data-testid="lang-name" data-language="CMake" x="15" y="10" class="lang-name">CMake 0.40%</text></g></svg></g>
+      <title>Consultado em 2026-11-05T17:54:09.289718+00:00. Alcance em assets/stats/audit.json.</title></svg>
