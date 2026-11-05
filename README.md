@@ -2,13 +2,14 @@
   Olá 👋, eu sou Lucas Dias
 </h1>
 
-<p align="center">
+<h3 align="center">
 <strong>Junior Full Stack Developer</strong><br>
 TypeScript · Next.js · React · PostgreSQL<br><br>
 IT Support | Infrastructure | Systems Implementation | Cloud Computing
   <!--
   IT Support | Infrastructure | Network Analyst | Active Directory | Windows Server | Linux | Cloud | Azure | AWS | DevOps | Full Stack Developer
   -->
+</h3>  
 </p>
 
 <p align="center">
@@ -19,7 +20,7 @@ IT Support | Infrastructure | Systems Implementation | Cloud Computing
 
 <p align="center">
   <a href="./assets/stats/audit.json">
-    <img src="./assets/stats/trophies.svg" width="760" alt="Troféus calculados com os dados auditados do GitHub" />
+    <img src="./assets/stats/trophies.svg" width="940" alt="Troféus calculados com os dados auditados do GitHub" />
   </a>
 </p>
 
