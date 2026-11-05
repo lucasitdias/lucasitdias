@@ -109,7 +109,7 @@ jobs:
               if repo.get("full_name", "").lower() != name.lower() or not repo.get("private"):
                   raise SystemExit("Um repositório obrigatório não foi confirmado como privado.")
           
-          commits, _ = api("/search/commits?" + urlencode({"q": f"author:{user}", "per_page": 1}))
+          commits, _ = api("/search/commits?" + urlencode({"q": f"author:{user}"}))
           if commits.get("incomplete_results") is not False:
               raise SystemExit("A busca de commits não confirmou resultado completo.")
           commit_count = commits.get("total_count")
@@ -216,12 +216,18 @@ jobs:
           token: ${{ secrets.PROFILE_STATS_TOKEN }}
 
       - name: Validar os painéis contra a auditoria
+        env:
+          PROFILE_STATS_TOKEN: ${{ secrets.PROFILE_STATS_TOKEN }}
         run: |
           python3 - <<'PY'
           import json
+          import os
+          import re
           import xml.etree.ElementTree as ET
           from datetime import datetime, timezone
           from pathlib import Path
+          from urllib.parse import urlencode
+          from urllib.request import Request, urlopen
           
           audit = json.loads(Path(".stats-audit.json").read_text(encoding="utf-8"))
           error_markers = (
@@ -246,10 +252,48 @@ jobs:
               if len(elements) != 1:
                   raise SystemExit(f"Não foi possível conferir a métrica {metric}.")
               raw = "".join(elements[0].itertext()).strip()
-              if not raw.isdecimal() or int(raw) != expected:
+              compact = raw.replace("\u00a0", "").replace("\u202f", "")
+              if compact.isascii() and compact.isdecimal():
+                  actual = int(compact)
+              elif re.fullmatch(r"[0-9]{1,3}(?:,[0-9]{3})+", compact):
+                  actual = int(compact.replace(",", ""))
+              else:
+                  raise SystemExit(f"Formato inesperado na métrica {metric}: {raw!r}.")
+              print(f"Conferência {metric}: auditoria={expected}; painel={actual}.")
+              if actual != expected and metric == "commits":
+                  token = os.environ.get("PROFILE_STATS_TOKEN", "")
+                  if not token:
+                      raise SystemExit("Token ausente para reconferir a divergência de commits.")
+                  request = Request(
+                      "https://api.github.com/search/commits?" + urlencode({"q": "author:lucasitdias"}),
+                      headers={
+                          "Accept": "application/vnd.github+json",
+                          "Authorization": f"Bearer {token}",
+                          "User-Agent": "profile-statistics-audit",
+                      },
+                  )
+                  with urlopen(request, timeout=60) as response:
+                      if response.headers.get("X-GitHub-SSO"):
+                          raise SystemExit("Acesso SSO parcial na reconferência de commits.")
+                      fresh = json.load(response)
+                  if fresh.get("incomplete_results") is not False or fresh.get("errors"):
+                      raise SystemExit("Reconferência de commits incompleta; publicação bloqueada.")
+                  latest = fresh.get("total_count")
+                  if not isinstance(latest, int) or latest < 0:
+                      raise SystemExit("Total inválido na reconferência de commits.")
+                  print(f"Reconferência commits: API={latest}; painel={actual}.")
+                  if actual == latest:
+                      audit["commits_recheck"] = {
+                          "initial_count": expected,
+                          "confirmed_count": latest,
+                          "consulted_at_utc": datetime.now(timezone.utc).isoformat(),
+                      }
+                      audit["metrics"]["commits"] = latest
+                      expected = latest
+              if actual != expected:
                   raise SystemExit(
-                      f"A métrica {metric} divergiu da consulta de auditoria. "
-                      "Pode haver atividade durante a coleta; execute novamente."
+                      f"A métrica {metric} divergiu: auditoria={expected}; painel={actual}. "
+                      "Publicação bloqueada; investigue a consulta e o período antes de aceitar os dados."
                   )
           
           audit["validated_at_utc"] = datetime.now(timezone.utc).isoformat()
