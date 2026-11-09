@@ -34,7 +34,7 @@
 
                 
                 <g transform="translate(82.5, 114)">
-                    <text x="0" y="52" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">16/02/2024 – 08/11/2026</text>
+                    <text x="0" y="52" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">16/02/2024 – 09/11/2026</text>
                 </g>
             </g>
             <g style="isolation: isolate">
@@ -47,7 +47,7 @@
 
                 
                 <g transform="translate(247.5, 145)">
-                    <text x="0" y="21" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">04/11/2026 – 07/11/2026</text>
+                    <text x="0" y="21" stroke-width="0" text-anchor="middle" fill="#C5C5C5" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="400" font-size="10px" font-style="normal" style="opacity: 1; opacity: 1;">Sem sequência</text>
                 </g>
 
                 
@@ -62,7 +62,7 @@
 
                 
                 <g transform="translate(247.5, 48)">
-                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="font-size: 28px;">4</text>
+                    <text x="0" y="32" stroke-width="0" text-anchor="middle" fill="#FFFFFF" stroke="none" font-family="&quot;Segoe UI&quot;, Ubuntu, sans-serif" font-weight="700" font-size="28px" font-style="normal" style="font-size: 28px;">0</text>
                 </g>
 
             </g>
@@ -86,4 +86,4 @@
             </g>
             
         </g>
-    <desc>Dias do calendário do GitHub em UTC. Hoje sem contribuição preserva a sequência de ontem. Em empate, maior sequência mais antiga.</desc><title>Consultado em 2026-11-08T22:44:08.551493+00:00. Alcance em assets/stats/audit.json.</title></svg>
+    <desc>Dias do calendário do GitHub em UTC. Hoje sem contribuição preserva a sequência de ontem. Em empate, maior sequência mais antiga.</desc><title>Consultado em 2026-11-09T02:00:28.452746+00:00. Alcance em assets/stats/audit.json.</title></svg>
