@@ -260,39 +260,39 @@ Atuei com suporte técnico, infraestrutura e implantação de sistemas em ambien
 
 <tr>
   <td width="50%" align="center">
-    <a href="https://github.com/lucasitdias/pizzaria-massa-nostra">
-      <img width="400" src="./assets/project-cards/project-1.svg" alt="pizzaria-massa-nostra" />
-    </a>
-  </td>
-  <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/whisper_desktop">
-      <img width="400" src="./assets/project-cards/project-2.svg" alt="whisper_desktop" />
+      <img width="400" src="./assets/project-cards/project-1.svg" alt="whisper_desktop" />
     </a>
   </td>
-</tr>
-
-<tr>
   <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/cosulta-cnpj">
-      <img width="400" src="./assets/project-cards/project-3.svg" alt="cosulta-cnpj" />
-    </a>
-  </td>
-  <td width="50%" align="center">
-    <a href="https://github.com/lucasitdias/desafio-tecnico-berna">
-      <img width="400" src="./assets/project-cards/project-4.svg" alt="desafio-tecnico-berna" />
+      <img width="400" src="./assets/project-cards/project-2.svg" alt="cosulta-cnpj" />
     </a>
   </td>
 </tr>
 
 <tr>
   <td width="50%" align="center">
-    <a href="https://github.com/lucasitdias/cinelogplay-web">
-      <img width="400" src="./assets/project-cards/project-5.svg" alt="cinelogplay-web" />
+    <a href="https://github.com/lucasitdias/desafio-tecnico-berna">
+      <img width="400" src="./assets/project-cards/project-3.svg" alt="desafio-tecnico-berna" />
     </a>
   </td>
   <td width="50%" align="center">
+    <a href="https://github.com/lucasitdias/cinelogplay-web">
+      <img width="400" src="./assets/project-cards/project-4.svg" alt="cinelogplay-web" />
+    </a>
+  </td>
+</tr>
+
+<tr>
+  <td width="50%" align="center">
     <a href="https://github.com/lucasitdias/computer-science-studies">
-      <img width="400" src="./assets/project-cards/project-6.svg" alt="computer-science-studies" />
+      <img width="400" src="./assets/project-cards/project-5.svg" alt="computer-science-studies" />
+    </a>
+  </td>
+  <td width="50%" align="center">
+    <a href="https://github.com/lucasitdias/app-compras-android">
+      <img width="400" src="./assets/project-cards/project-6.svg" alt="app-compras-android" />
     </a>
   </td>
 </tr>
