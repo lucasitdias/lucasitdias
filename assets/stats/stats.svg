@@ -108,7 +108,7 @@
           
     <g data-testid="rank-circle" transform="translate(390.5, 47.5)">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle" cx="-10" cy="8" r="40" style="animation:none;stroke-dasharray:251.32741228718345;stroke-dashoffset:148.47312000452675;transform-origin:-10px 8px;transform:rotate(-90deg)" />
+        <circle class="rank-circle" cx="-10" cy="8" r="40" style="animation:none;stroke-dasharray:251.32741228718345;stroke-dashoffset:149.08551623329663;transform-origin:-10px 8px;transform:rotate(-90deg)" />
         <g class="rank-text">
           
         <text x="-10" y="8" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="level-rank-icon">B</text>
@@ -170,4 +170,4 @@
     </svg>
   
         </g>
-      <style id="audit-static-style">.stagger,.header,.rank-text{opacity:1;animation:none}</style><title>Consultado em 2026-11-19T08:40:21.005296+00:00. Alcance em assets/stats/audit.json.</title></svg>
+      <style id="audit-static-style">.stagger,.header,.rank-text{opacity:1;animation:none}</style><title>Consultado em 2026-11-19T17:41:55.681051+00:00. Alcance em assets/stats/audit.json.</title></svg>
