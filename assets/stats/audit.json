@@ -1,7 +1,7 @@
 {
   "schema_version": 9,
   "account": "lucasitdias",
-  "consulted_at_utc": "2026-11-23T19:06:55.392249+00:00",
+  "consulted_at_utc": "2026-11-24T04:16:10.664475+00:00",
   "private_access": {
     "owned_private_repositories_checked": 4,
     "required_private_repositories_checked": 2,
@@ -9,8 +9,8 @@
   },
   "coverage": {
     "repositories_checked": 22,
-    "branches_checked": 36,
-    "unique_commit_objects_examined": 863,
+    "branches_checked": 37,
+    "unique_commit_objects_examined": 887,
     "unassociated_author_objects": 10,
     "empty_repositories": 0,
     "branch_heads_unchanged": true,
@@ -22,7 +22,7 @@
     "commits": 533,
     "prs": 133,
     "issues": 1,
-    "stars": 4,
+    "stars": 5,
     "contribs": 4
   },
   "profile_totals": {
@@ -40,12 +40,12 @@
     "stars": "Estrelas dos repositórios próprios na consulta inicial",
     "contributed_repositories": "Semântica de repositoriesContributedTo do GitHub (último ano), não a contagem dos repositórios do inventário",
     "reviews": {
-      "from": "2025-11-23T19:06:55.392249+00:00",
-      "to": "2026-11-23T19:06:55.392249+00:00"
+      "from": "2025-11-24T04:16:10.664475+00:00",
+      "to": "2026-11-24T04:16:10.664475+00:00"
     },
     "calendar": {
       "from": "2024-02-16",
-      "to": "2026-11-23",
+      "to": "2026-11-24",
       "timezone": "UTC"
     }
   },
@@ -53,17 +53,17 @@
     "repositories_checked": 12,
     "bytes_by_language": {
       "CSS": 247968,
-      "Dockerfile": 9782,
+      "Dockerfile": 9679,
       "HTML": 767450,
       "Inno Setup": 3470,
-      "JavaScript": 839971,
+      "JavaScript": 915027,
       "PLpgSQL": 93153,
       "Python": 350703,
-      "TypeScript": 5884265
+      "TypeScript": 6098528
     },
     "window_days": 180,
-    "activity_from": "2026-05-27T19:06:55.392249+00:00",
-    "activity_to": "2026-11-23T19:06:55.392249+00:00",
+    "activity_from": "2026-05-28T04:16:10.664475+00:00",
+    "activity_to": "2026-11-24T04:16:10.664475+00:00",
     "owned_repositories": 9,
     "other_owners_repositories": 3,
     "private_repositories": 7,
@@ -73,38 +73,38 @@
     "displayed": [
       {
         "name": "TypeScript",
-        "bytes": 5884265,
-        "percentage": 71.79
+        "bytes": 6098528,
+        "percentage": 71.87
       },
       {
         "name": "JavaScript",
-        "bytes": 839971,
-        "percentage": 10.25
+        "bytes": 915027,
+        "percentage": 10.78
       },
       {
         "name": "HTML",
         "bytes": 767450,
-        "percentage": 9.36
+        "percentage": 9.04
       },
       {
         "name": "Python",
         "bytes": 350703,
-        "percentage": 4.28
+        "percentage": 4.13
       },
       {
         "name": "CSS",
         "bytes": 247968,
-        "percentage": 3.03
+        "percentage": 2.92
       },
       {
         "name": "PLpgSQL",
         "bytes": 93153,
-        "percentage": 1.14
+        "percentage": 1.1
       },
       {
         "name": "Dockerfile",
-        "bytes": 9782,
-        "percentage": 0.12
+        "bytes": 9679,
+        "percentage": 0.11
       },
       {
         "name": "Inno Setup",
@@ -116,9 +116,9 @@
   "streak": {
     "total": 771,
     "first_activity": "2024-02-16",
-    "current": 3,
-    "current_from": "2026-11-20",
-    "current_to": "2026-11-22",
+    "current": 0,
+    "current_from": null,
+    "current_to": null,
     "longest": 5,
     "longest_from": "2026-05-03",
     "longest_to": "2026-05-07"
@@ -139,7 +139,7 @@
     {
       "year": 2026,
       "from": "2026-01-01",
-      "to": "2026-11-23",
+      "to": "2026-11-24",
       "total": 746
     }
   ],
@@ -1155,16 +1155,17 @@
     "2026-11-20": 6,
     "2026-11-21": 4,
     "2026-11-22": 10,
-    "2026-11-23": 0
+    "2026-11-23": 0,
+    "2026-11-24": 0
   },
   "rank_validation": {
     "level": "B",
-    "formula_score": 59.10592821615819,
+    "formula_score": 58.544760988324285,
     "inputs": {
       "commits": 533,
       "prs": 133,
       "issues": 1,
-      "stars": 4,
+      "stars": 5,
       "contribs": 4,
       "reviews": 16,
       "followers": 8
@@ -1172,8 +1173,8 @@
     "formula_source": "https://github.com/stats-organization/github-readme-stats/blob/d79be7a9fd50ce38aef89306c8a1185fc0443bc7/src/calculateRank.js",
     "note": "Fórmula do gerador com commits únicos das branches auditadas; não é nota oficial do GitHub nem avaliação profissional."
   },
-  "validated_at_utc": "2026-11-23T19:07:28.313576+00:00",
-  "api_requests": 117,
+  "validated_at_utc": "2026-11-24T04:16:47.101110+00:00",
+  "api_requests": 118,
   "validation": {
     "metrics_svg_match": true,
     "languages_svg_match": true,
@@ -1248,28 +1249,28 @@
       {
         "category": "Stars",
         "title": "Estrelas",
-        "score": 4,
-        "display_value": "4 estrelas",
+        "score": 5,
+        "display_value": "5 estrelas",
         "rank": "C",
         "message": "First Star",
-        "progress": 0.4,
+        "progress": 0.5,
         "next_threshold": 10,
-        "level_progress": 0.3333333333333333,
+        "level_progress": 0.4444444444444444,
         "display_message": "First Star"
       }
     ],
     "badges": {
-      "stars-badge.svg": "4",
+      "stars-badge.svg": "5",
       "followers-badge.svg": "8",
       "public-repos-badge.svg": "13",
       "private-repos-badge.svg": "4",
-      "updated-badge.svg": "23/11/2026 16:07 BRT"
+      "updated-badge.svg": "24/11/2026 01:16 BRT"
     },
     "updated_timezone": "America/Sao_Paulo",
     "experience_rule": "floor(dias completos desde a criação da conta / 100), conforme o gerador original. Exibição em pontos inteiros, com sufixo pt; não mede experiência profissional nem anos de carreira.",
     "reviews_period": {
-      "from": "2025-11-23T19:06:55.392249+00:00",
-      "to": "2026-11-23T19:06:55.392249+00:00"
+      "from": "2025-11-24T04:16:10.664475+00:00",
+      "to": "2026-11-24T04:16:10.664475+00:00"
     },
     "bars_rule": "Valor atual / próxima meta absoluta da categoria. No nível máximo, 100%. level_progress registra separadamente o avanço relativo entre níveis, preservando a referência do gerador original.",
     "views": "Komarev externo, separado desta auditoria; conta carregamentos, não visitantes únicos."
